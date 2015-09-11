@@ -1,0 +1,5 @@
+This repository has used info, copied and modified files from many
+sources, specially from:
+
+https://github.com/mathiasbynens/dotfiles
+https://github.com/nicknisi/dotfiles

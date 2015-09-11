@@ -75,5 +75,6 @@ brew cask install istat-menus
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json \
 qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook \
 suspicious-package
+brew cask install macdown
 
 echo "-- Done brew.sh"
