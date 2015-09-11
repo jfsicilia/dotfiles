@@ -1,10 +1,15 @@
 #!/bin/bash
+#
+# Downloads powerline fonts from the github repository and installs them.
+#
 POWERLINE_TMP=/tmp/powerline
+
 mkdir -p $POWERLINE_TMP
 
 # Download powerline git repository.
 git clone git://github.com/powerline/fonts.git $POWERLINE_TMP 
 
+# List of all fonts.
 FIND_COMMAND="find \"$POWERLINE_TMP\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
 
 if [[ `uname` == 'Darwin' ]]; then
@@ -26,4 +31,5 @@ fi
 
 echo "All Powerline fonts installed to $FONTS_FOLDER"
 
+# Clean up
 rm -rf $POWERLINE_TMP
