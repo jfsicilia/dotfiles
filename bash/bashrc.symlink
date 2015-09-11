@@ -1,0 +1,48 @@
+# Beautify prompt line and terminal.
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+export CLICOLOR=1
+export LSCOLORS="exdxcxfxbxegedabagacad" 
+# export LSCOLORS=ExFxBxDxCxegedabagacad
+alias ls='ls -GFh'
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+
+# Function to remove a path from the PATH variable
+# Param1: Path to remove.
+function removeFromPath() {  
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+}
+
+# Function to set the Java Development Kit
+# Param1: Version of JDK (e.g. 1.6, 1.7, 1.8)
+function setjdk() {  
+  if [ $# -ne 0 ]; then  
+   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'  
+   if [ -n "${JAVA_HOME+x}" ]; then  
+    removeFromPath $JAVA_HOME  
+   fi  
+   export JAVA_HOME=`/usr/libexec/java_home -v $@`  
+   export PATH=$JAVA_HOME/bin:$PATH  
+  fi  
+ }  
+
+# Set JDK to 1.7.
+setjdk 1.7
+
+# Gradle env variables.
+export GRADLE_HOME=/usr/local/gradle
+# Esta variable la tienes desactivada pero la puedes emplear para pasar 
+# parámetros a la JVM.
+# export GRADLE_OPTS="-Xmx768m -XX:MaxPermSize=128m"
+
+# Ensure user-installed binaries take precedence
+export PATH=/usr/local/bin:$PATH
+
+# Set architecture flags
+export ARCHFLAGS="-arch x86_64"
+
+# Setting PATH for Python 3.4
+# The orginal version is saved in .bash_profile.pysave
+export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+
+export PATH="/usr/local/git/bin:${PATH}"

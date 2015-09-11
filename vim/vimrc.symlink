@@ -1,0 +1,459 @@
+set nocompatible
+
+" Avoid some security exploits by disabling modelines.
+set modelines=0
+
+" ----------------------------------------------------------------------------
+" Load the plugin loader (Vundle)
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" ----------------------------------------------------------------------------
+
+" Bootstrap vim-plug if not present.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+" Load plugins.
+call plug#begin()
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+Plug 'DirDiff.vim'
+Plug 'salsifis/vim-transpose'
+Plug 'bling/vim-airline'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'airblade/vim-gitgutter'
+Plug 'jfsicilia/bclose'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+call plug#end()
+
+" ----------------------------------------------------------------------------
+" General config.
+" ----------------------------------------------------------------------------
+
+" Set default dirs for undo, swap and backup.
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" do not keep a backup file, will use versions control instead
+set nobackup
+
+" writes new file, deletes old file, rename new file to old (more secure).
+set nowritebackup
+
+" keep 50 lines of command line history
+set history=50
+
+" show the cursor position all the time
+set ruler
+
+" Highlight current line.
+set cursorline
+
+" Always show 3 lines ahead when scrolling.
+set scrolloff=3
+
+" Set spelling languange.
+set spelllang=es
+" set spelllang=en_gb
+
+" Set encoding
+set encoding=utf-8
+
+" Enable line numbering.
+set nu
+
+" Use the same symbols as TextMate for tabstops and EOLs when hidden chars
+" are shown.
+set listchars=tab:▸\ ,eol:¬
+
+" Unnamed register bound to clipboard.
+set clipboard+=unnamed
+
+" Change default leader char.
+let mapleader=','
+
+" Tabs while span 4 spaces.
+set tabstop=4
+" Software tab.
+set softtabstop=4
+" Number of spaces used in indentation mode.
+set shiftwidth=4
+" Use of spaces instead of tabs.
+set expandtab
+
+" Autoindent.
+set autoindent
+set smartindent
+
+" Shows vim current mode (insert, normal, visual, ...).
+set showmode
+
+" Show the command you are typing on the last line.
+set showcmd
+
+" When using tab on the commandline, it shows all options in a menu.
+set wildmenu
+set wildmode=list:longest
+
+" No audio warnings.
+set visualbell
+
+" Fast file scrolling.
+set ttyfast
+
+" Show file numbering relative to current line
+set relativenumber
+
+" Enables .un~ file to save all changes to the file and let undo them even
+" after saving and closing file.
+set undofile
+
+" Allows to hide a buffer with changes not written to disk.
+set hidden
+
+" Disable folding
+set nofoldenable
+
+" Always show status line.
+set laststatus=2
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made. Appended wincmd h to
+" set focus on the window more likely to close.
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+    \ | wincmd p | diffthis | wincmd h
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+if &t_Co > 2 || has("gui_running")
+  syntax on
+endif
+
+" Only do this part when compiled with support for autocommands.
+"if has("autocmd")
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " Syntax of these languages is fussy over tabs Vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Customisations based on house-style (arbitrary)
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+  " When .vimrc is written, automatically source it.
+  autocmd bufwritepost .vimrc source $MYVIMRC
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+"else
+
+"  set autoindent		" always set autoindenting on
+
+"endif " has("autocmd")
+
+" ----------------------------------------------------------------------------
+" Wrapping
+" ----------------------------------------------------------------------------
+
+" Set wrapping and max chars per line
+set wrap linebreak nolist
+set textwidth=78
+
+" Show symbol at end of line for wrapped lines.
+set showbreak=↪
+
+" Highlight column 79th.
+set colorcolumn=79
+
+" ----------------------------------------------------------------------------
+" Search and substitution
+" ----------------------------------------------------------------------------
+
+" Enables normal regexes.
+nnoremap / /\v
+vnoremap / /\v
+
+" Ignore case and smartcase on searching.
+set ignorecase
+set smartcase
+
+" Applies global substitution on line by default. No need to add g to the end
+" of the subs string (:%s/foo/bar/g, now only type :%s/foo/bar/). To disable
+" it, add g to the end of the subs string.
+set gdefault
+
+" do incremental searching
+set incsearch
+" Switch on highlighting the last used search pattern.
+set hlsearch
+set showmatch
+
+" ----------------------------------------------------------------------------
+" Vim color schemes.
+" ----------------------------------------------------------------------------
+
+" By default, dark background.
+set background=dark
+" Solarized colorscheme
+colorscheme solarized
+
+" Enables F5 to toggle between dark and light colorscheme.
+call togglebg#map("<F5>")
+
+" ----------------------------------------------------------------------------
+" Airline plugin config.
+" ----------------------------------------------------------------------------
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Set powerline simbols.
+let g:airline_powerline_fonts = 1
+
+" Set airline theme
+let g:airline_theme='powerlineish'
+
+" Enable plugin for syntastic.
+let g:airline#extensions#syntastic#enabled = 1
+
+" Enable plugin for tmux.
+let g:airline#extensions#tmuxline#enabled = 1
+
+" ----------------------------------------------------------------------------
+"  CtrlP plugin config.
+" ----------------------------------------------------------------------------
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Use a leader instead of the actual named binding
+nnoremap <leader>p :CtrlP<CR>
+
+" Easy bindings for its various modes
+nnoremap <leader>bb :CtrlPBuffer<CR>
+nnoremap <leader>bf :CtrlP<CR>
+nnoremap <leader>bm :CtrlPMixed<CR>
+nnoremap <leader>br :CtrlPMRU<CR>
+
+" Show list of buffers and wait for user selection.
+nnoremap <leader>/ :buffers<CR>:buffer<Space>
+
+" ----------------------------------------------------------------------------
+" NERDTree plugin config.
+" ----------------------------------------------------------------------------
+
+" Toggles NERDTree window.
+nnoremap <leader>nt :NERDTreeToggle<CR>
+" Find current buffer in NERDTree
+nnoremap <leader>nf :NERDTreeFind<CR>
+" If NERDTree is the only buffer when you close a buffer, close vim.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
+            \ b:NERDTreeType == "primary") | q | endif
+" Avoid easy buffer switching on the nerdtree split window.
+autocmd FileType nerdtree noremap <buffer> <leader>m <nop>
+autocmd FileType nerdtree noremap <buffer> <leader>, <nop>
+autocmd FileType nerdtree noremap <buffer> <leader>. <nop>
+
+
+" ----------------------------------------------------------------------------
+" Vim-bookmarks plugin config.
+" ----------------------------------------------------------------------------
+
+" Set sign background color
+highlight SignColumn ctermbg=black
+" Enable automaticsaving for bookmarks
+let g:bookmark_auto_save = 1
+" Save bookmarks when leaving a buffer, load when entering one.
+let g:bookmark_manage_per_buffer = 1
+" Enable warning when clearing all bookmarks
+let g:bookmark_show_warning = 1
+" Automatically close bookmarks split when jumping to a bookmark.
+let g:bookmark_auto_close = 1
+
+" Next lines allow to avoid conflict with NERDTree key bindings.
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nnoremap mm :BookmarkToggle<CR>
+    nnoremap mi :BookmarkAnnotate<CR>
+    nnoremap mn :BookmarkNext<CR>
+    nnoremap mp :BookmarkPrev<CR>
+    nnoremap ma :BookmarkShowAll<CR>
+    nnoremap mc :BookmarkClear<CR>
+    nnoremap mx :BookmarkClearAll<CR>
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+
+" ----------------------------------------------------------------------------
+" GitGutter plugin config.
+" ----------------------------------------------------------------------------
+
+" Disable gitgutter default key mappings.
+let g:gitgutter_map_keys = 0
+
+" ----------------------------------------------------------------------------
+" Custom shortcuts.
+" ----------------------------------------------------------------------------
+
+" Like to make ; do the same thing as :
+nnoremap ; :
+
+" Don't use Ex mode (Q by default enables it), use Q for formatting
+" NOTE: Ex mode is like the command mode for batch processing.
+nnoremap Q gq
+
+" Set paste mode. Helps when pasting from other apps to allow 1to1 pastes.
+set pastetoggle=<F2>
+
+" Shortcut to rapidly toggle `set list` (enables/disables hidden chars).
+nnoremap <silent> <F3> :set list!<CR>
+
+" Deletes trailing whitespaces.
+nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>
+    \ :nohl<CR>
+
+" Enable/disable spelling.
+nnoremap <silent> <leader>s :set spell!<CR>
+
+" Fast .vimrc editing.
+nnoremap <leader>v :e $MYVIMRC<CR>
+
+" Hides search highlighting.
+nnoremap <leader><space> :noh<CR>
+
+" Tab is more easy to access than % to match [, {, (, ...
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Cmd-[ or ] to indent forward or bacward.
+nnoremap <leader>[ <<
+nnoremap <leader>] >>
+vnoremap <leader>[ <gv
+vnoremap <leader>] >gv
+
+" Chrome kind of tab selection.
+noremap <C-tab> gt
+noremap <C-S-tab> gT
+
+" Use arrow to resize windows.
+nnoremap <left> <C-w>>
+nnoremap <right> <C-w><
+nnoremap <up> <C-w>-
+nnoremap <down> <C-w>+
+
+" Shortcuts to move arround windows.
+nnoremap <leader>h <C-w>h
+nnoremap <leader>l <C-w>l
+nnoremap <leader>k <C-w>k
+nnoremap <leader>j <C-w>j
+
+" Fast access to prev/next buffer and last buffer switching.
+nnoremap <leader>m :bp<CR>
+nnoremap <leader>, :b#<CR>
+nnoremap <leader>. :bn<CR>
+
+" Fast access to splitting window.
+nnoremap <leader>- :sp<CR>
+nnoremap <leader>\| :vs<CR>
+
+" Easy file opening in current dir.
+nnoremap <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+" Shortcuts for diff with original file.
+nnoremap <Leader>do :DiffOrig<CR>
+nnoremap <leader>dq :bd<CR>:diffoff!<CR>
+
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u (break undo sequence,
+" start new change), so that you can undo CTRL-U after in normal mode.
+inoremap <C-U> <C-G>u<C-U>
+" Same for CTRL-W (which deletes previous word).
+inoremap <C-W> <C-G>u<C-W>
+
+" Toggles wrapping on and off.
+nnoremap <leader>w :set wrap!<CR>
+
+" Closes buffer and deletes it bringing next buffer to current window.
+nnoremap <leader>q :Bclose<CR>
+
+" Writes buffer and closes/deletes it bringing next buffer to current window.
+nnoremap <leader>wq :w<CR>:Bclose<CR>
+
+" --------------------------------------------------
+"  Testing
+" --------------------------------------------------
+"inoremap <c-d> <esc>ddi
+"inoremap <c-u> <esc>lviWUwi
+"nnoremap <c-u> viWUw
+let maplocalleader='-'
+iabbrev waht what
+iabbrev adn and
+iabbrev tehn then
+iabbrev @@ jfsiclia@gmail.com
+iabbrev ssig ___________________<CR>Juan Fco. Sicilia<CR>jfsicilia@gmail.com
