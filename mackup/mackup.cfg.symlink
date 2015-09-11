@@ -1,0 +1,17 @@
+[storage]
+engine = dropbox
+path = ~/Dropbox
+directory = Mackup
+
+[applications_to_sync]
+dash
+flux
+iterm2
+kaleidoscope
+mou
+sourcetree
+spotify
+sublime-text-3
+transmit
+vlc
+webstorm-10
