@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 echo "-- Init osx.sh"
 
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
@@ -130,11 +132,11 @@ sudo tmutil disablelocal
 sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
+# sudo rm /private/var/vm/sleepimage
 # Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
+# sudo touch /private/var/vm/sleepimage
 # …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
+# sudo chflags uchg /private/var/vm/sleepimage
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
@@ -567,7 +569,7 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen 1
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-open "$HOME/.dotfiles/mac/terminal/solarized_dark.terminal"
+open "$DOTFILES/mac/terminal/solarized_dark.terminal"
 sleep 1
 
 defaults write com.apple.terminal "Default Window Settings" -string "solarized_dark"
@@ -626,9 +628,9 @@ defaults write com.apple.terminal "Startup Window Settings" -string "solarized_d
 #defaults write org.x.X11 wm_ffm -bool true
 
 # Install the Solarized Dark theme for iTerm
-open "$HOME/.dotfiles/mac/iterm/solarized_dark.itermcolors"
+open "$DOTFILES/mac/iterm/solarized_dark.itermcolors"
 sleep 1
-open "$HOME/.dotfiles/mac/iterm/solarized_light.itermcolors"
+open "$DOTFILES/mac/iterm/solarized_light.itermcolors"
 sleep 1
 
 # Don’t display the annoying prompt when quitting iTerm
@@ -840,7 +842,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 ###############################################################################
 
 # Install custom keyboard layout.
-cp $HOME/.dotfiles/mac/keyboard/IrishCustom.keylayout $HOME/Library/Keyboard\ Layouts
+cp $DOTFILES/mac/keyboard/IrishCustom.keylayout $HOME/Library/Keyboard\ Layouts
 if test -f $HOME/Library/Keyboard\ Layouts/IrishCustom.keylayout; then
     echo "-- Custom Irish keyboard installed, select it in System Preferences -> Keyboard -> Input Sources"
 fi
@@ -850,17 +852,17 @@ fi
 ###############################################################################
 
 # Install custom Automator services.
-if cp -r $HOME/.dotfiles/mac/automator/*.workflow $HOME/Library/Services; then
+if cp -r $DOTFILES/mac/automator/*.workflow $HOME/Library/Services; then
     echo "-- Automator workflow services installed."
 fi
 
 # Install custom Automator apps.
-if cp -r $HOME/.dotfiles/mac/automator/*.app $HOME/Applications; then
+if cp -r $DOTFILES/mac/automator/*.app $HOME/Applications; then
     echo "-- Automator apps installed."
 fi
 
 # Install custom AppleScript apps.
-if cp -r $HOME/.dotfiles/mac/applescript/*.app $HOME/Applications; then
+if cp -r $DOTFILES/mac/applescript/*.app $HOME/Applications; then
     echo "-- AppleScript apps installed."
 fi
 
@@ -875,6 +877,7 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	killall "${app}" > /dev/null 2>&1
 done
 
-echo "-- Done osx.h. Note that some of these changes require a logout/restart to take effect."
+echo "-- Note that some of these changes require a logout/restart to take effect."
+echo "-- Done osx.sh"
 
 

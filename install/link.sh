@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "-- Init link.sh"
 
-DOTFILES=$HOME/.dotfiles
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 echo "-- Creating symlinks"
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )

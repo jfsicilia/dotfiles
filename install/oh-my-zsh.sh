@@ -4,7 +4,8 @@
 #
 echo "-- Init oh-my-zsh.sh"
 
-OH_MY_ZSH_HOME=~/.dotfiles/zsh/oh-my-zsh.symlink
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+OH_MY_ZSH_HOME=$DOTFILES/zsh/oh-my-zsh.symlink
 CUSTOM_THEMES_HOME=$OH_MY_ZSH_HOME/custom/themes
 
 mkdir -p $CUSTOM_THEMES_HOME
