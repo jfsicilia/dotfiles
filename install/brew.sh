@@ -1,18 +1,19 @@
 #!/bin/sh
+echo "-- Init brew.sh."
 
 # If brew not installed, install it.
 if test ! $(which brew); then
-    echo "Installing homebrew"
+    echo "-- Installing homebrew."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 echo "-- Updating brew..."
 # Make sure we’re using the latest Homebrew.
-# brew update
+brew update
 
-echo "-- Upgrading installed formulae"
+echo "-- Upgrading installed formulae."
 # Upgrade any already-installed formulae.
-# brew upgrade --all
+brew upgrade --all
 
 echo "-- Installing homebrew packages..."
 
@@ -74,3 +75,5 @@ brew cask install istat-menus
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json \
 qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook \
 suspicious-package
+
+echo "-- Done brew.sh"

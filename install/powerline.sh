@@ -2,14 +2,17 @@
 #
 # Downloads powerline fonts from the github repository and installs them.
 #
+
+echo "-- Init powerline.sh"
+
 POWERLINE_TMP=/tmp/powerline
 
 mkdir -p $POWERLINE_TMP
 
-# Download powerline git repository.
+# Download powerline git repository to tmp dir.
 git clone git://github.com/powerline/fonts.git $POWERLINE_TMP 
 
-# List of all fonts.
+# Get a list of all fonts.
 FIND_COMMAND="find \"$POWERLINE_TMP\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
 
 if [[ `uname` == 'Darwin' ]]; then
@@ -33,3 +36,5 @@ echo "All Powerline fonts installed to $FONTS_FOLDER"
 
 # Clean up
 rm -rf $POWERLINE_TMP
+
+echo "-- Done powerline.sh"

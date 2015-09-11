@@ -1,8 +1,9 @@
 #!/bin/bash
+echo "-- Init link.sh"
 
 DOTFILES=$HOME/.dotfiles
 
-echo "-- creating symlinks"
+echo "-- Creating symlinks"
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"
@@ -11,3 +12,5 @@ for file in $linkables ; do
         ln -s $file $target
     fi
 done
+
+echo "-- Done link.sh"
