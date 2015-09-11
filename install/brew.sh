@@ -26,6 +26,7 @@ brew install openssl
 brew install trash
 brew install imagemagick
 brew install p7zip
+brew install mackup
 
 # development tools
 brew install git
