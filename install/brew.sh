@@ -18,6 +18,7 @@ brew upgrade --all
 echo "-- Installing homebrew packages..."
 
 # cli tools
+brew install coreutils
 brew install ack
 brew install tree
 brew install wget
