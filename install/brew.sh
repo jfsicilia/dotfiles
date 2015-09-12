@@ -85,5 +85,6 @@ qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook \
 suspicious-package
 brew cask install macdown
 brew cask install sketchup
+brew cask install appcleaner
 
 echo "-- Done brew.sh"
