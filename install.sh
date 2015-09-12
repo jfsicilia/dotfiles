@@ -37,6 +37,11 @@ if [ "$(uname)" == "Darwin" ]; then
     echo "# Updating OSX settings #"
     echo "#########################"
     source install/osx.sh
+
+    echo -e "\n##############################"
+    echo "# Mackup restore apps config #"
+    echo "##############################"
+    mackup restore
 fi
 
 echo -e "\n###########################"
