@@ -45,6 +45,7 @@ echo "-- Installing homebrew cask packages..."
 # Install cask and casks.
 brew install caskroom/cask/brew-cask
 
+brew cask install android-file-transfer
 brew cask install seil
 brew cask install iterm2
 brew cask install caffeine
@@ -58,12 +59,17 @@ brew cask install bartender
 brew cask install disk-inventory-x
 brew cask install dropbox
 # brew cask install cura
+# brew cask install eclipse-ide
+# brew cask install pycharm-cpycharm-ce
+brew cask install sketchup
+# brew cask install popcorn-time
 brew cask install bettertouchtool
 brew cask install evernote
 brew cask install keepassx
 brew cask install skype
 brew cask install spotify
 brew cask install google-chrome
+# brew cask install remote-desktop-connection
 # brew cask install synology-cloud-station
 brew cask install the-unarchiver
 brew cask install vmware-fusion
@@ -77,5 +83,6 @@ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json \
 qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook \
 suspicious-package
 brew cask install macdown
+brew cask install sketchup
 
 echo "-- Done brew.sh"
