@@ -1,7 +1,7 @@
 [storage]
-engine = dropbox
-path = ~/Dropbox
-directory = Mackup
+engine = file_system
+path = Documents/settings
+directory = mackup
 
 [applications_to_sync]
 adobe-camera-raw
@@ -9,17 +9,22 @@ bartender
 bettertouchtool
 caffeine
 cloudapp
+colorsync
 defaultkeybinding
 dash
 divvy
 filezilla
-keypassx
+keepassx
 istat-menus-5
 iterm2
 macosx
+macvim
 microsoft-remote-desktop
 popcorn-time
 pycharm40
 seil
+skype
+ssh
 spotify
 vlc
+xcode
