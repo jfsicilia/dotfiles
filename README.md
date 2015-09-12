@@ -50,6 +50,7 @@ It would prompt asking for your password, and then it would start executing the 
 	* Custom keyboard layout installation.
 	* Powerline fonts installation.
 	* Automator and AppleScript services/workflows/apps installation.
+    * Mackup restore of apps configuration.
 	
 
 ## Thanks to...
