@@ -4,14 +4,22 @@ path = ~/Dropbox
 directory = Mackup
 
 [applications_to_sync]
+adobe-camera-raw
+bartender
+bettertouchtool
+caffeine
+cloudapp
+defaultkeybinding
 dash
-flux
+divvy
+filezilla
+keypassx
+istat-menus-5
 iterm2
-kaleidoscope
-mou
-sourcetree
+macosx
+microsoft-remote-desktop
+popcorn-time
+pycharm40
+seil
 spotify
-sublime-text-3
-transmit
 vlc
-webstorm-10
