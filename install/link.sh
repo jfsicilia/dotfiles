@@ -9,7 +9,7 @@ for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"
     if ! test -h $target; then
         echo "-- creating symlink for $file in home"
-        ln -s $file $target
+        ln -Fs $file $target
     fi
 done
 
