@@ -2,7 +2,9 @@
 #
 # Config zsh as default shell
 #
-echo "-- Init zsh.sh"
+source ../cecho.sh
+
+cecho "Init zsh.sh" $green
 
 SHELLS_FILE=/etc/shells
 # Check wether or not, zsh shell is available in /etc/shells. If not add it.
@@ -11,7 +13,7 @@ if ! grep $(which zsh) $SHELLS_FILE > /dev/null; then
 fi
 # Change shell.
 if chsh -s $(which zsh); then
-    echo "-- Zsh config as new shell."
+    cecho "Zsh config as new shell." $green
 fi
 
-echo "-- Done zsh.sh"
+cecho "Done zsh.sh" $green

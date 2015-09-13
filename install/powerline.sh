@@ -2,8 +2,9 @@
 #
 # Downloads powerline fonts from the github repository and installs them.
 #
+source ../cecho.sh
 
-echo "-- Init powerline.sh"
+cecho "Init powerline.sh" $green
 
 POWERLINE_TMP=/tmp/powerline
 
@@ -32,9 +33,9 @@ if [[ -n `which fc-cache` ]]; then
   fc-cache -f $FONTS_FOLDER
 fi
 
-echo "All Powerline fonts installed to $FONTS_FOLDER"
+cecho "All Powerline fonts installed to $FONTS_FOLDER" $green
 
 # Clean up
 rm -rf $POWERLINE_TMP
 
-echo "-- Done powerline.sh"
+cecho "Done powerline.sh" $green

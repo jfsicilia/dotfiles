@@ -1,21 +1,23 @@
-#!/bin/sh
-echo "-- Init brew.sh."
+#!/bin/bash
+source ../cecho.sh
+
+cecho "Init brew.sh." $green
 
 # If brew not installed, install it.
 if test ! $(which brew); then
-    echo "-- Installing homebrew."
+    cecho "Installing homebrew." $green
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-echo "-- Updating brew..."
+cecho "Updating brew..." $green
 # Make sure we’re using the latest Homebrew.
 brew update
 
-echo "-- Upgrading installed formulae."
+cecho "Upgrading installed formulae." $green
 # Upgrade any already-installed formulae.
 brew upgrade --all
 
-echo "-- Installing homebrew packages..."
+cecho "Installing homebrew packages..." $green
 
 # cli tools
 brew install coreutils
@@ -42,7 +44,7 @@ brew install markdown
 brew install python3
 brew install ruby
 
-echo "-- Installing homebrew cask packages..."
+cecho "Installing homebrew cask packages..." $green
 # Install cask and casks.
 brew install caskroom/cask/brew-cask
 
@@ -87,4 +89,5 @@ brew cask install macdown
 brew cask install sketchup
 brew cask install appcleaner
 
-echo "-- Done brew.sh"
+cecho "Done brew.sh" $green
+

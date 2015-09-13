@@ -187,7 +187,7 @@ endif
 
 " Set wrapping and max chars per line
 set wrap linebreak nolist
-set textwidth=78
+" set textwidth=78
 
 " Show symbol at end of line for wrapped lines.
 set showbreak=↪

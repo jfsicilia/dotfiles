@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source ../cecho.sh
 
-cecho "Init osx.sh" $blue
+cecho "Init osx.sh" $green
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
@@ -695,7 +695,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # Install custom keyboard layout.
 cp $DOTFILES/mac/keyboard/IrishCustom.keylayout $HOME/Library/Keyboard\ Layouts
 if test -f $HOME/Library/Keyboard\ Layouts/IrishCustom.keylayout; then
-    cecho "Custom Irish keyboard installed, select it in System Preferences -> Keyboard -> Input Sources" $blue
+    cecho "Custom Irish keyboard installed, select it in System Preferences -> Keyboard -> Input Sources" $green
 fi
 
 ###############################################################################
@@ -704,17 +704,17 @@ fi
 
 # Install custom Automator services.
 if cp -r $DOTFILES/mac/automator/*.workflow $HOME/Library/Services; then
-    cecho "Automator workflow services installed." $blue
+    cecho "Automator workflow services installed." $green
 fi
 
 # Install custom Automator apps.
 if cp -r $DOTFILES/mac/automator/*.app $HOME/Applications; then
-    cecho "Automator apps installed." $blue
+    cecho "Automator apps installed." $green
 fi
 
 # Install custom AppleScript apps.
 if cp -r $DOTFILES/mac/applescript/*.app $HOME/Applications; then
-    cecho "AppleScript apps installed." $blue
+    cecho "AppleScript apps installed." $green
 fi
 
 ###############################################################################
@@ -729,6 +729,6 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 done
 
 cecho "Note that some of these changes require a logout/restart to take effect." $red
-cecho "Done osx.sh" $blue
+cecho "Done osx.sh" $green
 
 

@@ -1,10 +1,11 @@
 #!/bin/bash
+source ../cecho.sh
 
-echo "-- Init vi.sh"
+cecho "Init vi.sh" $green
 
 # Install vim plugins and exit.
 if vim +PlugInstall +qall; then
     echo "-- Vim plugins installed."
 fi
 
-echo "-- Done vi.sh"
+cecho "Done vi.sh" $green
