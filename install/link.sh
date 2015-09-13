@@ -1,16 +1,18 @@
 #!/bin/bash
-echo "-- Init link.sh"
+source ../cecho.sh
+
+cecho "Init link.sh" $blue
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-echo "-- Creating symlinks"
+cecho "Creating symlinks" $blue
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"
     if ! test -h $target; then
-        echo "-- creating symlink for $file in home"
+        cecho "creating symlink for $file in home" $blue
         ln -Fs $file $target
     fi
 done
 
-echo "-- Done link.sh"
+cecho "Done link.sh" $blue
