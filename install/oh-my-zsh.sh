@@ -9,7 +9,7 @@ fi
 cecho "Init oh-my-zsh.sh" $green
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
-OH_MY_ZSH_HOME=$DOTFILES/zsh/oh-my-zsh.symlink
+OH_MY_ZSH_HOME=$DOTFILES/zsh/oh-my-zsh
 CUSTOM_THEMES_HOME=$OH_MY_ZSH_HOME/custom/themes
 
 cecho "Installing customizations..." $green
