@@ -1,27 +1,7 @@
 #!/usr/bin/env bash
+source ../cecho.sh
 
-# Set the colours you can use
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
-
-# Resets the style
-reset=`tput sgr0`
-
-# Color-echo. Improved. [Thanks @joaocunha]
-# arg $1 = message
-# arg $2 = Color
-cecho() {
-  echo -e "${2}${1}${reset}"
-  return
-}
-
-echo "-- Init osx.sh"
+cecho "Init osx.sh" $blue
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
@@ -715,7 +695,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # Install custom keyboard layout.
 cp $DOTFILES/mac/keyboard/IrishCustom.keylayout $HOME/Library/Keyboard\ Layouts
 if test -f $HOME/Library/Keyboard\ Layouts/IrishCustom.keylayout; then
-    echo "-- Custom Irish keyboard installed, select it in System Preferences -> Keyboard -> Input Sources"
+    cecho "Custom Irish keyboard installed, select it in System Preferences -> Keyboard -> Input Sources" $blue
 fi
 
 ###############################################################################
@@ -724,17 +704,17 @@ fi
 
 # Install custom Automator services.
 if cp -r $DOTFILES/mac/automator/*.workflow $HOME/Library/Services; then
-    echo "-- Automator workflow services installed."
+    cecho "Automator workflow services installed." $blue
 fi
 
 # Install custom Automator apps.
 if cp -r $DOTFILES/mac/automator/*.app $HOME/Applications; then
-    echo "-- Automator apps installed."
+    cecho "Automator apps installed." $blue
 fi
 
 # Install custom AppleScript apps.
 if cp -r $DOTFILES/mac/applescript/*.app $HOME/Applications; then
-    echo "-- AppleScript apps installed."
+    cecho "AppleScript apps installed." $blue
 fi
 
 ###############################################################################
@@ -748,7 +728,7 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	killall "${app}" > /dev/null 2>&1
 done
 
-cecho "-- Note that some of these changes require a logout/restart to take effect." $red
-echo "-- Done osx.sh"
+cecho "Note that some of these changes require a logout/restart to take effect." $red
+cecho "Done osx.sh" $blue
 
 
