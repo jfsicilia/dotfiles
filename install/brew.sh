@@ -22,74 +22,89 @@ brew upgrade --all
 cecho "Installing homebrew packages..." $green
 
 # cli tools
-brew install coreutils
-brew install ack
-brew install tree
-brew install wget
-brew install nmap
-brew install openssl
-brew install trash
-brew install imagemagick
-brew install p7zip
-brew install mackup
+cli=(
+    coreutils
+    ack
+    tree
+    wget
+    nmap
+    openssl
+    trash
+    imagemagick
+    p7zip
+    mackup
+)
+brew install ${cli[@]}
 
 # development tools
-brew install git
-# brew install hub
-brew install macvim --override-system-vim
-brew install reattach-to-user-namespace
-brew install tmux
-brew install zsh
-brew install highlight
-brew install z
-brew install markdown
-brew install python3
-brew install ruby
+dev=(
+    git
+    macvim --override-system-vim
+    reattach-to-user-namespace
+    tmux
+    zsh
+    highlight
+    z
+    markdown
+    python3
+    ruby
+)
+brew install ${dev[@]}
 
 cecho "Installing homebrew cask packages..." $green
-# Install cask and casks.
 brew install caskroom/cask/brew-cask
 
-brew cask install android-file-transfer
-brew cask install seil
-brew cask install iterm2
-brew cask install caffeine
-brew cask install cloud
-brew cask install dash
-brew cask install divvy
-brew cask install ukelele
-brew cask install freecad
-brew cask install alfred
-brew cask install bartender
-brew cask install disk-inventory-x
-brew cask install dropbox
-# brew cask install cura
-# brew cask install eclipse-ide
-# brew cask install pycharm-cpycharm-ce
-brew cask install sketchup
-# brew cask install popcorn-time
-brew cask install bettertouchtool
-brew cask install evernote
-brew cask install keepassx
-brew cask install skype
-brew cask install spotify
-brew cask install google-chrome
-# brew cask install remote-desktop-connection
-# brew cask install synology-cloud-station
-brew cask install the-unarchiver
-brew cask install vmware-fusion
-brew cask install vlc
-brew cask install android-file-transfer
-brew cask install filezilla
-brew cask install google-earth
-brew cask install graphviz
-brew cask install istat-menus
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json \
-qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook \
-suspicious-package
-brew cask install macdown
-brew cask install sketchup
-brew cask install appcleaner
+# Casks.
+apps=(
+    android-file-transfer
+    seil
+    iterm2
+    caffeine
+    cloud
+    dash
+    divvy
+    ukelele
+    freecad
+    alfred
+    bartender
+    disk-inventory-x
+    dropbox
+    sketchup
+    bettertouchtool
+    evernote
+    keepassx
+    skype
+    spotify
+    google-chrome
+    the-unarchiver
+    vmware-fusion
+    vlc
+    android-file-transfer
+    filezilla
+    google-earth
+    graphviz
+    istat-menus
+    macdown
+    sketchup
+    appcleaner
+    qlcolorcode
+    qlstephen
+    qlmarkdown
+    quicklook-json
+    qlprettypatch
+    quicklook-csv
+    betterzipql
+    qlimagesize
+    webpquicklook
+    suspicious-package
+    #remote-desktop-connection
+    #synology-cloud-station
+    #cura
+    #eclipse-ide
+    #pycharm-cpycharm-ce
+    #popcorn-time
+)
+brew cask install ${apps[@]}
 
 cecho "Done brew.sh" $green
 
