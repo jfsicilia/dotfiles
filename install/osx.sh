@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-if test -f ../cecho.sh; then
-    source ../cecho.sh
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+if ! type -t cecho > /dev/null; then
+    source $DOTFILES/cecho.sh
 fi
 
 cecho "Init osx.sh" $green
-
-DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 ###############################################################################
 # General UI/UX                                                               #

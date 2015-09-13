@@ -2,14 +2,14 @@
 #
 # Copy custom files to oh-my-zsh folder.
 #
-if test -f ../cecho.sh; then
-    source ../cecho.sh
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+if ! type -t cecho > /dev/null; then
+    source $DOTFILES/cecho.sh
 fi
 
 cecho "Init oh-my-zsh.sh" $green
 
-DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
-OH_MY_ZSH_HOME=$DOTFILES/zsh/oh-my-zsh
+OH_MY_ZSH_HOME=$DOTFILES/zsh/oh-my-zsh.symlink
 CUSTOM_THEMES_HOME=$OH_MY_ZSH_HOME/custom/themes
 
 cecho "Installing customizations..." $green
