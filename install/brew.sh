@@ -1,5 +1,7 @@
 #!/bin/bash
-source ../cecho.sh
+if test -f ../cecho.sh; then
+    source ../cecho.sh
+fi
 
 cecho "Init brew.sh." $green
 

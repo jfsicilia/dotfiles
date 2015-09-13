@@ -2,7 +2,9 @@
 #
 # Copy custom files to oh-my-zsh folder.
 #
-source ../cecho.sh
+if test -f ../cecho.sh; then
+    source ../cecho.sh
+fi
 
 cecho "Init oh-my-zsh.sh" $green
 

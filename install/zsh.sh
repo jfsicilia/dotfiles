@@ -2,7 +2,9 @@
 #
 # Config zsh as default shell
 #
-source ../cecho.sh
+if test -f ../cecho.sh; then
+    source ../cecho.sh
+fi
 
 cecho "Init zsh.sh" $green
 

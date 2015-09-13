@@ -75,4 +75,4 @@ cecho "# Updating Vim settings #" $blue
 cecho "#########################" $blue
 source install/vi.sh
 
-echo "-- Done install.sh."
+cecho "Done install.sh." $green

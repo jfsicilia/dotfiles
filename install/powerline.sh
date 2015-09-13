@@ -2,7 +2,9 @@
 #
 # Downloads powerline fonts from the github repository and installs them.
 #
-source ../cecho.sh
+if test -f ../cecho.sh; then
+    source ../cecho.sh
+fi
 
 cecho "Init powerline.sh" $green
 
