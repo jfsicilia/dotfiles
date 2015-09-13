@@ -66,6 +66,7 @@ apps=(
     divvy
     ukelele
     freecad
+    karabiner
     alfred
     bartender
     disk-inventory-x
