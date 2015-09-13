@@ -56,10 +56,8 @@ plugins=(git brew extract catimg cloudapp osx z)
 
 # User configuration
 
-#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-#export PATH=$PATH:"/usr/local/git/bin:$HOME/bin"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:\
-/usr/local/git/bin:$HOME/bin"
+# GNU coreutils prefered. Add my scripts at the end.
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH:$HOME/bin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -91,10 +89,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-# Enable colors.
+# Enable LS colors.
 export CLICOLOR=YES
 export LSCOLORS="exdxcxfxbxegedabagacad"
-
+export LS_COLORS="di=34;100:ln=33;100:so=32;100:pi=35;100:ex=31;100:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+e
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
