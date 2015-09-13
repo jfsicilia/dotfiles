@@ -17,7 +17,7 @@ reset=`tput sgr0`
 # arg $1 = message
 # arg $2 = Color
 cecho() {
-  echo "${2}${1}${reset}"
+  echo -e "${2}${1}${reset}"
   return
 }
 
