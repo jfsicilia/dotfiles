@@ -26,6 +26,7 @@ cecho "Installing homebrew packages..." $green
 cli=(
     coreutils
     ack
+    duti
     tree
     wget
     nmap
