@@ -1,0 +1,38 @@
+#-----------------------------------------------------------------------------
+# Example of configuration file:
+# #
+# # Set Safari as the default handler for HTML files,
+# # set TextEdit as the default handler for files with .patch extensions,
+# # and set Firefox as the default handler for feed:// URLs.
+# #
+# # blank lines and lines beginning with a '#' are ignored
+# #
+# # bundle id     UTI/ext/MIME type   role
+# #
+# com.apple.Safari    public.html     all
+# com.apple.TextEdit  .patch          editor
+# #
+# # bundle id     URL scheme
+# #
+# org.mozilla.Firefox feed
+# #
+
+# To get the bundle id of an application, type this in terminal
+#
+# osascript -e 'id of app "my_app"'
+#
+# Example:
+#
+# osascript -e 'id of app "Finder"'
+#-----------------------------------------------------------------------------
+
+#
+# Register Vim to open many file types.
+#
+com.apple.automator.TerminalVim .txt    all
+com.apple.automator.TerminalVim .cmp    all
+com.apple.automator.TerminalVim .hdl    all
+com.apple.automator.TerminalVim .tst    all
+com.apple.automator.TerminalVim .strings    all
+
+
