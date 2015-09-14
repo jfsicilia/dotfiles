@@ -45,10 +45,16 @@ if [ "$(uname)" == "Darwin" ]; then
     source install/osx.sh
 
     echo ""
+    cecho "##########################" $blue
+    cecho "# Duti file associations #" $blue
+    cecho "##########################" $blue
+    source install/duti.sh
+
+    echo ""
     cecho "##############################" $blue
     cecho "# Mackup restore apps config #" $blue
     cecho "##############################" $blue
-    mackup restore
+    source install/mackup.sh
 fi
 
 echo ""
