@@ -27,6 +27,7 @@ cli=(
     coreutils
     ack
     duti
+    htop
     tree
     wget
     nmap
