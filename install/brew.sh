@@ -32,6 +32,7 @@ cli=(
     nmap
     openssl
     trash
+    the_silver_searcher
     imagemagick
     p7zip
     mackup
