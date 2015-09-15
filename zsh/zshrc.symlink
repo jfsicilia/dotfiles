@@ -56,11 +56,12 @@ plugins=(git brew extract catimg cloudapp osx z)
 
 # User configuration
 
-# GNU coreutils prefered. Add my scripts at the end.
-# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/bin"
-
+# Enable this if you want to use GNU coreutils instead of MACOSX.
+# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 # export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
+# Add my scripts at the end.
+export PATH="$PATH:$HOME/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,10 +100,10 @@ export LS_COLORS="di=34;100:ln=33;100:so=32;100:pi=35;100:ex=31;100:bd=34;46:cd=
 export GREP_OPTIONS='--color=auto'
 
 # Allows hide/show hidden files on MacOSX
-alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; \
-    killall Finder /System/Library/CoreServices/Finder.app"
-alias hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; \
-    killall Finder /System/Library/CoreServices/Finder.app"
+# alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; \
+#     killall Finder /System/Library/CoreServices/Finder.app"
+# alias hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; \
+#     killall Finder /System/Library/CoreServices/Finder.app"
 
 # Function to remove a path from the PATH variable
 # Param1: Path to remove.
