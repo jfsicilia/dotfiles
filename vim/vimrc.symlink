@@ -199,7 +199,8 @@ set colorcolumn=79
 " Search and substitution
 " ----------------------------------------------------------------------------
 
-" Enables normal regexes.
+" Enables normal regexes (very magic). Don't activate very magic on substitute
+" commands, prefered this workflow: first search and then :%s//replace/
 nnoremap / /\v
 vnoremap / /\v
 
@@ -346,11 +347,15 @@ let g:gitgutter_map_keys = 0
 " ----------------------------------------------------------------------------
 
 " Like to make ; do the same thing as :
-nnoremap ; :
+" nnoremap ; :
 
 " Don't use Ex mode (Q by default enables it), use Q for formatting
 " NOTE: Ex mode is like the command mode for batch processing.
 nnoremap Q gq
+
+" j and k doesn't step through wrapped lines.
+nnoremap j gj
+nnoremap k gk
 
 " Set paste mode. Helps when pasting from other apps to allow 1to1 pastes.
 set pastetoggle=<F2>
@@ -370,6 +375,11 @@ nnoremap <leader>v :e $MYVIMRC<CR>
 
 " Hides search highlighting.
 nnoremap <leader><space> :noh<CR>
+
+" Note that remapping C-s requires flow control to be disabled
+" (e.g. in .bashrc or .zshrc)
+noremap <C-s> :w<CR>
+inoremap <C-s> <C-o>:w<CR>
 
 " Tab is more easy to access than % to match [, {, (, ...
 nnoremap <tab> %
@@ -407,7 +417,7 @@ nnoremap <leader>- :sp<CR>
 nnoremap <leader>\| :vs<CR>
 
 " Easy file opening in current dir.
-nnoremap <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>ee :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
@@ -427,6 +437,7 @@ nnoremap <leader>w :set wrap!<CR>
 
 " Closes buffer and deletes it bringing next buffer to current window.
 nnoremap <leader>q :Bclose<CR>
+nnoremap <leader>Q :Bclose!<CR>
 
 " Writes buffer and closes/deletes it bringing next buffer to current window.
 nnoremap <leader>wq :w<CR>:Bclose<CR>
