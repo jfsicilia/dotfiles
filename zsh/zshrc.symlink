@@ -99,6 +99,10 @@ export LS_COLORS="di=34;100:ln=33;100:so=32;100:pi=35;100:ex=31;100:bd=34;46:cd=
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
+# Disable flow control commands (keeps C-s from freezing everything)
+stty start undef
+stty stop undef
+
 # Allows hide/show hidden files on MacOSX
 # alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; \
 #     killall Finder /System/Library/CoreServices/Finder.app"
