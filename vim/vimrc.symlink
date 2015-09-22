@@ -84,6 +84,8 @@ set tabstop=4
 set softtabstop=4
 " Number of spaces used in indentation mode.
 set shiftwidth=4
+" Round indent to shiftwidth.
+set shiftround
 " Use of spaces instead of tabs.
 set expandtab
 
@@ -162,6 +164,7 @@ endif
 
   " When .vimrc is written, automatically source it.
   autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost vimrc.symlink source $MYVIMRC
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -384,6 +387,10 @@ inoremap <C-s> <C-o>:w<CR>
 " Tab is more easy to access than % to match [, {, (, ...
 nnoremap <tab> %
 vnoremap <tab> %
+
+" Set - to move lines downwards and _ to move lines upwards.
+nnoremap - ddp
+nnoremap _ ddkP
 
 " Cmd-[ or ] to indent forward or bacward.
 nnoremap <leader>[ <<
