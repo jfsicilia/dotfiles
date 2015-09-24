@@ -26,6 +26,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'airblade/vim-gitgutter'
 Plug 'jfsicilia/bclose'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 call plug#end()
 
 " ----------------------------------------------------------------------------
@@ -78,12 +79,12 @@ set clipboard+=unnamed
 " Change default leader char.
 let mapleader=','
 
-" Tabs while span 4 spaces.
-set tabstop=4
+" Tabs while span 2 spaces.
+set tabstop=2
 " Software tab.
-set softtabstop=4
+set softtabstop=2
 " Number of spaces used in indentation mode.
-set shiftwidth=4
+set shiftwidth=2
 " Round indent to shiftwidth.
 set shiftround
 " Use of spaces instead of tabs.
@@ -141,48 +142,42 @@ if &t_Co > 2 || has("gui_running")
   syntax on
 endif
 
-" Only do this part when compiled with support for autocommands.
-"if has("autocmd")
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+au!
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text setlocal textwidth=78
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+" Syntax of these languages is fussy over tabs Vs spaces
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-  " Syntax of these languages is fussy over tabs Vs spaces
-  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Customisations based on house-style (arbitrary)
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
 
-  " Customisations based on house-style (arbitrary)
-  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+" Treat .rss files as XML
+autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-  " Treat .rss files as XML
-  autocmd BufNewFile,BufRead *.rss setfiletype xml
+" When .vimrc is written, automatically source it.
+autocmd bufwritepost .vimrc source $MYVIMRC
+autocmd bufwritepost vimrc.symlink source $MYVIMRC
 
-  " When .vimrc is written, automatically source it.
-  autocmd bufwritepost .vimrc source $MYVIMRC
-  autocmd bufwritepost vimrc.symlink source $MYVIMRC
+" Don't use wrap on html files.
+autocmd BufNewFile,BufRead *.html setlocal nowrap
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+\ if line("'\"") > 1 && line("'\"") <= line("$") |
+\   exe "normal! g`\"" |
+\ endif
 
-  augroup END
-
-"else
-
-"  set autoindent		" always set autoindenting on
-
-"endif " has("autocmd")
+augroup END
 
 " ----------------------------------------------------------------------------
 " Wrapping
@@ -293,7 +288,7 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 " If NERDTree is the only buffer when you close a buffer, close vim.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
-            \ b:NERDTreeType == "primary") | q | endif
+    \ b:NERDTreeType == "primary") | q | endif
 " Avoid easy buffer switching on the nerdtree split window.
 autocmd FileType nerdtree noremap <buffer> <leader>m <nop>
 autocmd FileType nerdtree noremap <buffer> <leader>, <nop>
@@ -318,22 +313,22 @@ let g:bookmark_auto_close = 1
 " Next lines allow to avoid conflict with NERDTree key bindings.
 let g:bookmark_no_default_key_mappings = 1
 function! BookmarkMapKeys()
-    nnoremap mm :BookmarkToggle<CR>
-    nnoremap mi :BookmarkAnnotate<CR>
-    nnoremap mn :BookmarkNext<CR>
-    nnoremap mp :BookmarkPrev<CR>
-    nnoremap ma :BookmarkShowAll<CR>
-    nnoremap mc :BookmarkClear<CR>
-    nnoremap mx :BookmarkClearAll<CR>
+  nnoremap mm :BookmarkToggle<CR>
+  nnoremap mi :BookmarkAnnotate<CR>
+  nnoremap mn :BookmarkNext<CR>
+  nnoremap mp :BookmarkPrev<CR>
+  nnoremap ma :BookmarkShowAll<CR>
+  nnoremap mc :BookmarkClear<CR>
+  nnoremap mx :BookmarkClearAll<CR>
 endfunction
 function! BookmarkUnmapKeys()
-    unmap mm
-    unmap mi
-    unmap mn
-    unmap mp
-    unmap ma
-    unmap mc
-    unmap mx
+  unmap mm
+  unmap mi
+  unmap mn
+  unmap mp
+  unmap ma
+  unmap mc
+  unmap mx
 endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
@@ -344,6 +339,20 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " Disable gitgutter default key mappings.
 let g:gitgutter_map_keys = 0
+" Reenable mappings just for prev/next hunk.
+nnoremap [h :GitGutterPrevHunk<CR>
+nnoremap ]h :GitGutterNextHunk<CR>
+
+" ----------------------------------------------------------------------------
+" Indent-guides plugin config.
+" ----------------------------------------------------------------------------
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=4
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=5
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_default_mapping = 0
+nnoremap <leader>ig :IndentGuidesToggle<CR>
 
 " ----------------------------------------------------------------------------
 " Custom shortcuts.
@@ -391,6 +400,16 @@ vnoremap <tab> %
 " Set - to move lines downwards and _ to move lines upwards.
 nnoremap - ddp
 nnoremap _ ddkP
+
+" Some mappings to help converting to uppercase.
+inoremap <c-u> <esc>viWUviW<esc>a
+nnoremap <c-u> viWUW
+
+" Allows line deleting in insert mode.
+inoremap <c-d> <esc>ddi
+
+" Use spacebar to select word under cursor.
+nnoremap <space> viw
 
 " Cmd-[ or ] to indent forward or bacward.
 nnoremap <leader>[ <<
@@ -452,12 +471,21 @@ nnoremap <leader>wq :w<CR>:Bclose<CR>
 " --------------------------------------------------
 "  Testing
 " --------------------------------------------------
-"inoremap <c-d> <esc>ddi
-"inoremap <c-u> <esc>lviWUwi
-"nnoremap <c-u> viWUw
-let maplocalleader='-'
+let maplocalleader='\\'
+
 iabbrev waht what
 iabbrev adn and
 iabbrev tehn then
 iabbrev @@ jfsiclia@gmail.com
 iabbrev ssig ___________________<CR>Juan Fco. Sicilia<CR>jfsicilia@gmail.com
+
+nnoremap <leader>" viw<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>hbi'<esc>lel 
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>v
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>v
+nnoremap H ^
+nnoremap L $
+inoremap jk <esc>
+
+" set noesckeys
+set ttimeoutlen=100
