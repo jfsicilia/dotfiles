@@ -1,3 +1,6 @@
+" Plugins loading {{{1
+" ====================
+
 " Not compatible with old versions of vi.
 set nocompatible
 
@@ -29,9 +32,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 call plug#end()
 
-" ----------------------------------------------------------------------------
-" General config.
-" ----------------------------------------------------------------------------
+" General settings {{{1
+" =====================
 
 " Set default dirs for undo, swap and backup.
 set backupdir=~/.vim/backup//
@@ -68,6 +70,8 @@ set encoding=utf-8
 
 " Enable line numbering.
 set nu
+" Show file numbering relative to current line
+set relativenumber
 
 " Use the same symbols as TextMate for tabstops and EOLs when hidden chars
 " are shown.
@@ -110,9 +114,6 @@ set visualbell
 " Fast file scrolling.
 set ttyfast
 
-" Show file numbering relative to current line
-set relativenumber
-
 " Enables .un~ file to save all changes to the file and let undo them even
 " after saving and closing file.
 set undofile
@@ -126,12 +127,6 @@ set nofoldenable
 " Always show status line.
 set laststatus=2
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made. Appended wincmd h to
-" set focus on the window more likely to close.
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-    \ | wincmd p | diffthis | wincmd h
-
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -142,46 +137,8 @@ if &t_Co > 2 || has("gui_running")
   syntax on
 endif
 
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-au!
-
-" For all text files set 'textwidth' to 78 characters.
-autocmd FileType text setlocal textwidth=78
-
-" Syntax of these languages is fussy over tabs Vs spaces
-autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-" Customisations based on house-style (arbitrary)
-autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-
-" Treat .rss files as XML
-autocmd BufNewFile,BufRead *.rss setfiletype xml
-
-" When .vimrc is written, automatically source it.
-autocmd bufwritepost .vimrc source $MYVIMRC
-autocmd bufwritepost vimrc.symlink source $MYVIMRC
-
-" Don't use wrap on html files.
-autocmd BufNewFile,BufRead *.html setlocal nowrap
-
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
-autocmd BufReadPost *
-\ if line("'\"") > 1 && line("'\"") <= line("$") |
-\   exe "normal! g`\"" |
-\ endif
-
-augroup END
-
-" ----------------------------------------------------------------------------
 " Wrapping
-" ----------------------------------------------------------------------------
+" --------
 
 " Set wrapping and max chars per line
 set wrap linebreak nolist
@@ -193,9 +150,8 @@ set showbreak=↪
 " Highlight column 79th.
 set colorcolumn=79
 
-" ----------------------------------------------------------------------------
 " Search and substitution
-" ----------------------------------------------------------------------------
+" -----------------------
 
 " Enables normal regexes (very magic). Don't activate very magic on substitute
 " commands, prefered this workflow: first search and then :%s//replace/
@@ -217,149 +173,69 @@ set incsearch
 set hlsearch
 set showmatch
 
-" ----------------------------------------------------------------------------
-" Vim color schemes.
-" ----------------------------------------------------------------------------
+" Vim color schemes
+" -----------------
 
 " By default, dark background.
 set background=dark
 " Solarized colorscheme
 colorscheme solarized
 
-" Enables F5 to toggle between dark and light colorscheme.
-call togglebg#map("<F5>")
+" Commands {{{1
+" =============
 
-" ----------------------------------------------------------------------------
-" Airline plugin config.
-" ----------------------------------------------------------------------------
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made. Appended wincmd h to
+" set focus on the window more likely to close.
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+    \ | wincmd p | diffthis | wincmd h
 
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+" Macros {{{1
+" ===========
 
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+" Writes a comment with '=' characters to the full length of the prev line.
+let @u='YPjwv$r=0'
 
-" Set powerline simbols.
-let g:airline_powerline_fonts = 1
+" Autocommand group {{{1
+" ======================
+augroup autoVIMRC
+  autocmd!
 
-" Set airline theme
-let g:airline_theme='powerlineish'
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
 
-" Enable plugin for syntastic.
-let g:airline#extensions#syntastic#enabled = 1
+  " Syntax of these languages is fussy over tabs Vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
-" Enable plugin for tmux.
-let g:airline#extensions#tmuxline#enabled = 1
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-" ----------------------------------------------------------------------------
-"  CtrlP plugin config.
-" ----------------------------------------------------------------------------
+  " When .vimrc is written, automatically source it.
+  autocmd BufWritePost .vimrc source $MYVIMRC
+  autocmd BufWritePost vimrc.symlink source $MYVIMRC
 
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
+  " Use marker foldin for vim files.
+  autocmd FileType vim setlocal foldmethod=marker
 
-" Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in version
-" control. It also supports works with .svn, .hg, .bzr.
-let g:ctrlp_working_path_mode = 'r'
+  " Don't use wrap on html files.
+  autocmd BufNewFile,BufRead *.html setlocal nowrap
 
-" Use a leader instead of the actual named binding
-nnoremap <leader>p :CtrlP<CR>
+  autocmd InsertEnter * :set norelativenumber
+  autocmd InsertLeave * :set relativenumber
 
-" Easy bindings for its various modes
-nnoremap <leader>bb :CtrlPBuffer<CR>
-nnoremap <leader>bf :CtrlP<CR>
-nnoremap <leader>bm :CtrlPMixed<CR>
-nnoremap <leader>br :CtrlPMRU<CR>
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END
 
-" Show list of buffers and wait for user selection.
-nnoremap <leader>/ :buffers<CR>:buffer<Space>
-
-" ----------------------------------------------------------------------------
-" NERDTree plugin config.
-" ----------------------------------------------------------------------------
-
-" Toggles NERDTree window.
-nnoremap <leader>nt :NERDTreeToggle<CR>
-" Find current buffer in NERDTree
-nnoremap <leader>nf :NERDTreeFind<CR>
-" If NERDTree is the only buffer when you close a buffer, close vim.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
-    \ b:NERDTreeType == "primary") | q | endif
-" Avoid easy buffer switching on the nerdtree split window.
-autocmd FileType nerdtree noremap <buffer> <leader>m <nop>
-autocmd FileType nerdtree noremap <buffer> <leader>, <nop>
-autocmd FileType nerdtree noremap <buffer> <leader>. <nop>
-
-
-" ----------------------------------------------------------------------------
-" Vim-bookmarks plugin config.
-" ----------------------------------------------------------------------------
-
-" Set sign background color
-highlight SignColumn ctermbg=black
-" Enable automaticsaving for bookmarks
-let g:bookmark_auto_save = 1
-" Save bookmarks when leaving a buffer, load when entering one.
-let g:bookmark_manage_per_buffer = 1
-" Enable warning when clearing all bookmarks
-let g:bookmark_show_warning = 1
-" Automatically close bookmarks split when jumping to a bookmark.
-let g:bookmark_auto_close = 1
-
-" Next lines allow to avoid conflict with NERDTree key bindings.
-let g:bookmark_no_default_key_mappings = 1
-function! BookmarkMapKeys()
-  nnoremap mm :BookmarkToggle<CR>
-  nnoremap mi :BookmarkAnnotate<CR>
-  nnoremap mn :BookmarkNext<CR>
-  nnoremap mp :BookmarkPrev<CR>
-  nnoremap ma :BookmarkShowAll<CR>
-  nnoremap mc :BookmarkClear<CR>
-  nnoremap mx :BookmarkClearAll<CR>
-endfunction
-function! BookmarkUnmapKeys()
-  unmap mm
-  unmap mi
-  unmap mn
-  unmap mp
-  unmap ma
-  unmap mc
-  unmap mx
-endfunction
-autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
-
-" ----------------------------------------------------------------------------
-" GitGutter plugin config.
-" ----------------------------------------------------------------------------
-
-" Disable gitgutter default key mappings.
-let g:gitgutter_map_keys = 0
-" Reenable mappings just for prev/next hunk.
-nnoremap [h :GitGutterPrevHunk<CR>
-nnoremap ]h :GitGutterNextHunk<CR>
-
-" ----------------------------------------------------------------------------
-" Indent-guides plugin config.
-" ----------------------------------------------------------------------------
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=4
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=5
-let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-let g:indent_guides_default_mapping = 0
-nnoremap <leader>ig :IndentGuidesToggle<CR>
-
-" ----------------------------------------------------------------------------
-" Custom shortcuts.
-" ----------------------------------------------------------------------------
-
-" Like to make ; do the same thing as :
-" nnoremap ; :
+" Custom shortcuts {{{1
+" =====================
 
 " Don't use Ex mode (Q by default enables it), use Q for formatting
 " NOTE: Ex mode is like the command mode for batch processing.
@@ -378,6 +254,9 @@ nnoremap <silent> <F3> :set list!<CR>
 " Deletes trailing whitespaces.
 nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>
     \ :nohl<CR>
+
+" Enables F5 to toggle between dark and light colorscheme.
+call togglebg#map("<F5>")
 
 " Enable/disable spelling.
 nnoremap <silent> <leader>s :set spell!<CR>
@@ -468,9 +347,141 @@ nnoremap <leader>Q :Bclose!<CR>
 " Writes buffer and closes/deletes it bringing next buffer to current window.
 nnoremap <leader>wq :w<CR>:Bclose<CR>
 
-" --------------------------------------------------
-"  Testing
-" --------------------------------------------------
+" Airline plugin config {{{1
+" ==========================
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Set powerline simbols.
+let g:airline_powerline_fonts = 1
+
+" Set airline theme
+let g:airline_theme='powerlineish'
+
+" Enable plugin for syntastic.
+let g:airline#extensions#syntastic#enabled = 1
+
+" Enable plugin for tmux.
+let g:airline#extensions#tmuxline#enabled = 1
+
+" CtrlP plugin config {{{1
+" ========================
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Use a leader instead of the actual named binding
+nnoremap <leader>p :CtrlP<CR>
+
+" Easy bindings for its various modes
+nnoremap <leader>bb :CtrlPBuffer<CR>
+nnoremap <leader>bf :CtrlP<CR>
+nnoremap <leader>bm :CtrlPMixed<CR>
+nnoremap <leader>br :CtrlPMRU<CR>
+
+" Show list of buffers and wait for user selection.
+nnoremap <leader>/ :buffers<CR>:buffer<Space>
+
+" NERDTree plugin config {{{1
+" ===========================
+
+" Toggles NERDTree window.
+nnoremap <leader>nt :NERDTreeToggle<CR>
+" Find current buffer in NERDTree
+nnoremap <leader>nf :NERDTreeFind<CR>
+
+augroup autoNERDTree
+  au!
+  " If NERDTree is the only buffer when you close a buffer, close vim.
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&
+      \ b:NERDTreeType == "primary") | q | endif
+  " Avoid easy buffer switching on the nerdtree split window.
+  autocmd FileType nerdtree noremap <buffer> <leader>m <nop>
+  autocmd FileType nerdtree noremap <buffer> <leader>, <nop>
+  autocmd FileType nerdtree noremap <buffer> <leader>. <nop>
+augroup END
+
+
+" Vim-bookmarks plugin config {{{1
+" ================================
+
+" Set sign background color
+highlight SignColumn ctermbg=black
+" Enable automaticsaving for bookmarks
+let g:bookmark_auto_save = 1
+" Save bookmarks when leaving a buffer, load when entering one.
+let g:bookmark_manage_per_buffer = 1
+" Enable warning when clearing all bookmarks
+let g:bookmark_show_warning = 1
+" Automatically close bookmarks split when jumping to a bookmark.
+let g:bookmark_auto_close = 1
+
+" Next lines allow to avoid conflict with NERDTree key bindings.
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+  nnoremap mm :BookmarkToggle<CR>
+  nnoremap mi :BookmarkAnnotate<CR>
+  nnoremap mn :BookmarkNext<CR>
+  nnoremap mp :BookmarkPrev<CR>
+  nnoremap ma :BookmarkShowAll<CR>
+  nnoremap mc :BookmarkClear<CR>
+  nnoremap mx :BookmarkClearAll<CR>
+endfunction
+function! BookmarkUnmapKeys()
+  unmap mm
+  unmap mi
+  unmap mn
+  unmap mp
+  unmap ma
+  unmap mc
+  unmap mx
+endfunction
+augroup autoBookmarks
+  au!
+  autocmd BufEnter * :call BookmarkMapKeys()
+  autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+augroup END
+
+" GitGutter plugin config {{{1
+" ============================
+
+" Disable gitgutter default key mappings.
+let g:gitgutter_map_keys = 0
+" Reenable mappings just for prev/next hunk.
+nnoremap [h :GitGutterPrevHunk<CR>
+nnoremap ]h :GitGutterNextHunk<CR>
+
+" Indent-guides plugin config.
+" ============================
+
+let g:indent_guides_auto_colors = 0
+augroup autoIndentGuides
+  au!
+  " Select colors for guides.
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue   ctermbg=4
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=magenta ctermbg=5
+augroup END
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_start_level = 2
+nnoremap <leader>ig :IndentGuidesToggle<CR>
+
+"  Testing {{{1
+"  ============
+
 let maplocalleader='\\'
 
 iabbrev waht what
@@ -480,7 +491,7 @@ iabbrev @@ jfsiclia@gmail.com
 iabbrev ssig ___________________<CR>Juan Fco. Sicilia<CR>jfsicilia@gmail.com
 
 nnoremap <leader>" viw<esc>hbi"<esc>lel
-nnoremap <leader>' viw<esc>hbi'<esc>lel 
+nnoremap <leader>' viw<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>v
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>v
 nnoremap H ^
@@ -489,3 +500,9 @@ inoremap jk <esc>
 
 " set noesckeys
 set ttimeoutlen=100
+
+" Motion to select next function call name.
+onoremap F :<C-U>normal! f(hviw<CR>
+" Motion to select next email.
+onoremap in@ :<c-u>execute "normal! /\\v\\S+\\@\\S+\r:nohl\rviW"<CR>
+
