@@ -210,9 +210,9 @@ augroup autoVIMRC
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-  " When .vimrc is written, automatically source it.
-  autocmd BufWritePost .vimrc source $MYVIMRC
-  autocmd BufWritePost vimrc.symlink source $MYVIMRC
+  " When .vimrc is written, automatically source it. Refresh Airline
+  " to light up correctly tabbar.
+  autocmd BufWritePost .vimrc,vimrc.symlink source $MYVIMRC | AirlineRefresh
 
   " Use marker foldin for vim files.
   autocmd FileType vim setlocal foldmethod=marker
@@ -326,6 +326,7 @@ nnoremap <leader>ee :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>ep :execute "rightbelow split " . bufname("#")<CR>
 
 " Shortcuts for diff with original file.
 nnoremap <Leader>do :DiffOrig<CR>
@@ -497,6 +498,8 @@ vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>v
 nnoremap H ^
 nnoremap L $
 inoremap jk <esc>
+nnoremap <leader>t :match Error /\v.*\s+$/<CR>
+nnoremap <leader>T :match none<CR>
 
 " set noesckeys
 set ttimeoutlen=100
