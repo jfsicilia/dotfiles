@@ -31,6 +31,7 @@ Plug 'jfsicilia/bclose'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug '~/.vim/plugged/grep-operator'
+Plug 'mileszs/ack.vim'
 call plug#end()
 
 " General settings {{{1
@@ -481,6 +482,17 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 let g:indent_guides_default_mapping = 0
 let g:indent_guides_start_level = 2
 nnoremap <leader>ig :IndentGuidesToggle<CR>
+
+" Ack and Ag plugin config {{{1
+" =============================
+
+" Highlight the searched term.
+let g:ackhighlight=1
+
+" If silver searcher (Ag) is present in the system, use it.
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 "  Testing {{{1
 "  ============
