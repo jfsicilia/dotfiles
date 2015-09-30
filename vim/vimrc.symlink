@@ -30,6 +30,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jfsicilia/bclose'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
+Plug '~/.vim/plugged/grep-operator'
 call plug#end()
 
 " General settings {{{1
@@ -241,10 +242,6 @@ augroup END
 " NOTE: Ex mode is like the command mode for batch processing.
 nnoremap Q gq
 
-" j and k doesn't step through wrapped lines.
-nnoremap j gj
-nnoremap k gk
-
 " Set paste mode. Helps when pasting from other apps to allow 1to1 pastes.
 set pastetoggle=<F2>
 
@@ -348,6 +345,11 @@ nnoremap <leader>Q :Bclose!<CR>
 " Writes buffer and closes/deletes it bringing next buffer to current window.
 nnoremap <leader>wq :w<CR>:Bclose<CR>
 
+" Easy access to quickfix functionality.
+nnoremap <leader>co :copen<CR>
+nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprevious<CR>
 " Airline plugin config {{{1
 " ==========================
 
@@ -488,7 +490,7 @@ let maplocalleader='\\'
 iabbrev waht what
 iabbrev adn and
 iabbrev tehn then
-iabbrev @@ jfsiclia@gmail.com
+iabbrev @@@ jfsiclia@gmail.com
 iabbrev ssig ___________________<CR>Juan Fco. Sicilia<CR>jfsicilia@gmail.com
 
 nnoremap <leader>" viw<esc>hbi"<esc>lel
@@ -509,3 +511,4 @@ onoremap F :<C-U>normal! f(hviw<CR>
 " Motion to select next email.
 onoremap in@ :<c-u>execute "normal! /\\v\\S+\\@\\S+\r:nohl\rviW"<CR>
 
+" nnoremap <leader>gg :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
