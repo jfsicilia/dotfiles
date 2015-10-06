@@ -80,6 +80,7 @@ apps=(
     keepassx
     skype
     spotify
+    steam
     google-chrome
     the-unarchiver
     vmware-fusion
