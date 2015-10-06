@@ -58,10 +58,10 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 echo ""
-cecho "###########################" $blue
-cecho "# Install powerline fonts #" $blue
-cecho "###########################" $blue
-source install/powerline.sh
+cecho "#################" $blue
+cecho "# Install fonts #" $blue
+cecho "#################" $blue
+source install/fonts.sh
 
 echo ""
 cecho "#######################" $blue
