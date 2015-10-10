@@ -103,6 +103,7 @@ apps=(
     qlimagesize
     webpquicklook
     suspicious-package
+    yed
     #remote-desktop-connection
     #synology-cloud-station
     #cura
