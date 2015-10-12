@@ -103,8 +103,6 @@ export GREP_OPTIONS='--color=auto'
 stty start undef
 stty stop undef
 
-# Set vi mode.
-bindkey -v
 # Kill the lag between vi modes.
 export KEYTIMEOUT=1
 
