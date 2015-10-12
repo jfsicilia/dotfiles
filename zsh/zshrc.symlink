@@ -52,7 +52,7 @@ DISABLE_AUTO_TITLE="true"
 # ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew extract catimg cloudapp osx z)
+plugins=(git brew extract catimg cloudapp osx z vi-mode)
 
 # User configuration
 
@@ -102,6 +102,11 @@ export GREP_OPTIONS='--color=auto'
 # Disable flow control commands (keeps C-s from freezing everything)
 stty start undef
 stty stop undef
+
+# Set vi mode.
+bindkey -v
+# Kill the lag between vi modes.
+export KEYTIMEOUT=1
 
 # Allows hide/show hidden files on MacOSX
 # alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; \
