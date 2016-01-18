@@ -61,7 +61,7 @@ plugins=(git brew extract catimg cloudapp osx z vi-mode)
 # export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 
 # Add my scripts at the end.
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/usr/local/sbin:$HOME/bin"
 
 source $ZSH/oh-my-zsh.sh
 
