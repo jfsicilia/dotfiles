@@ -92,6 +92,7 @@ apps=(
     istat-menus
     macdown
     sketchup
+    openscad
     appcleaner
     qlcolorcode
     qlstephen
