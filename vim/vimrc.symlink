@@ -32,6 +32,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug '~/.vim/plugged/grep-operator'
 Plug 'mileszs/ack.vim'
+Plug 'sirtaj/vim-openscad'
 call plug#end()
 
 " General settings {{{1
