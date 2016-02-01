@@ -70,6 +70,7 @@ apps=(
     ukelele
     freecad
     karabiner
+    eve
     cheatsheet
     alfred
     bartender
