@@ -70,6 +70,7 @@ apps=(
     ukelele
     freecad
     karabiner
+    cheatsheet
     alfred
     bartender
     disk-inventory-x
