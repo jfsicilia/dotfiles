@@ -96,6 +96,8 @@ apps=(
     sketchup
     openscad
     appcleaner
+    yed
+# Quicklook plugins ____
     qlcolorcode
     qlstephen
     qlmarkdown
@@ -106,7 +108,7 @@ apps=(
     qlimagesize
     webpquicklook
     suspicious-package
-    yed
+# _____________________
     #remote-desktop-connection
     #synology-cloud-station
     #cura
