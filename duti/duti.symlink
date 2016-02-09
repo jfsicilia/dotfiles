@@ -29,10 +29,15 @@
 #
 # Register Vim to open many file types.
 #
-com.apple.automator.TerminalVim .txt    all
-com.apple.automator.TerminalVim .cmp    all
-com.apple.automator.TerminalVim .hdl    all
-com.apple.automator.TerminalVim .tst    all
-com.apple.automator.TerminalVim .strings    all
-
-
+# com.apple.automator.TerminalVim .txt    all
+# com.apple.automator.TerminalVim .cmp    all
+# com.apple.automator.TerminalVim .hdl    all
+# com.apple.automator.TerminalVim .tst    all
+# com.apple.automator.TerminalVim .strings    all
+# 
+# com.whomwah.quicklookstephen .txt    all
+# com.whomwah.quicklookstephen .cmp    all
+# com.whomwah.quicklookstephen .hdl    all
+# com.whomwah.quicklookstephen .tst    all
+# com.whomwah.quicklookstephen .strings    all
+# org.n8gray.qlcolorcode  .java all
