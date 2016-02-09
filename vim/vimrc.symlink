@@ -16,22 +16,40 @@ endif
 
 " Load plugins.
 call plug#begin()
+" Solarized color theme.
 Plug 'altercation/vim-colors-solarized'
+" File explorer.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Decorate nerdtree with git state symbols.
 Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plugin for git.
 Plug 'tpope/vim-fugitive'
+" Syntax checker.
 Plug 'scrooloose/syntastic'
+" Fuzzy finder.
 Plug 'kien/ctrlp.vim'
+" Check folder differences.
 Plug 'DirDiff.vim'
+" Cols to rows and viceversa.
 Plug 'salsifis/vim-transpose'
+" Vim info line and tabs.
 Plug 'bling/vim-airline'
+" Bookmarks.
 Plug 'MattesGroeger/vim-bookmarks'
+" Show symbol in gutter for changes in file.
 Plug 'airblade/vim-gitgutter'
+" Tabs closing.
 Plug 'jfsicilia/bclose'
+" Snippets for vim.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Indent guides.
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
+"Plug 'Yggdroot/indentLine'
+" Easy grep access.
 Plug '~/.vim/plugged/grep-operator'
+" Faster grep.
 Plug 'mileszs/ack.vim'
+" Openscad syntax hightlighting.
 Plug 'sirtaj/vim-openscad'
 call plug#end()
 
@@ -220,11 +238,19 @@ augroup autoVIMRC
   " Use marker foldin for vim files.
   autocmd FileType vim setlocal foldmethod=marker
 
+  " Use indent folding method for python.
+  autocmd FileType python setlocal foldmethod=indent | foldnestmax=2
+
   " Don't use wrap on html files.
   autocmd BufNewFile,BufRead *.html setlocal nowrap
 
+  " Toggle relative line number when entering/leaving editing.
   autocmd InsertEnter * :set norelativenumber
   autocmd InsertLeave * :set relativenumber
+
+  " Toggle lines number to ease tracking of active window.
+  autocmd WinEnter * :set number | set relativenumber
+  autocmd WinLeave * :set norelativenumber | set nonumber
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -286,8 +312,10 @@ nnoremap <c-u> viWUW
 " Allows line deleting in insert mode.
 inoremap <c-d> <esc>ddi
 
-" Use spacebar to select word under cursor.
-nnoremap <space> viw
+" Use spacebar to toggle code folding.
+nnoremap <space> za
+" Create a manual code folding if foldmethod is manual or marker. 
+vnoremap <space> zf
 
 " Cmd-[ or ] to indent forward or bacward.
 nnoremap <leader>[ <<
@@ -468,8 +496,8 @@ let g:gitgutter_map_keys = 0
 nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>
 
-" Indent-guides plugin config.
-" ============================
+" Indent-guides plugin config {{{1
+" ================================
 
 let g:indent_guides_auto_colors = 0
 augroup autoIndentGuides
