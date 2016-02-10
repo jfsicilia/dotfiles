@@ -50,6 +50,7 @@ dev=(
     highlight
     z
     markdown
+    python
     python3
     ruby
 )
