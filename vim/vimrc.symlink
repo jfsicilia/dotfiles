@@ -27,7 +27,7 @@ Plug 'tpope/vim-fugitive'
 " Syntax checker.
 Plug 'scrooloose/syntastic'
 " Fuzzy finder.
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Check folder differences.
 Plug 'DirDiff.vim'
 " Cols to rows and viceversa.
@@ -40,11 +40,10 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'airblade/vim-gitgutter'
 " Tabs closing.
 Plug 'jfsicilia/bclose'
+" Indent lines.
+Plug 'Yggdroot/indentLine'
 " Snippets for vim.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" Indent guides.
-Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
-"Plug 'Yggdroot/indentLine'
 " Easy grep access.
 Plug '~/.vim/plugged/grep-operator'
 " Faster grep.
@@ -239,7 +238,7 @@ augroup autoVIMRC
   autocmd FileType vim setlocal foldmethod=marker
 
   " Use indent folding method for python.
-  autocmd FileType python setlocal foldmethod=indent | foldnestmax=2
+  autocmd FileType python setlocal foldmethod=indent | setlocal foldnestmax=1
 
   " Don't use wrap on html files.
   autocmd BufNewFile,BufRead *.html setlocal nowrap
@@ -496,21 +495,12 @@ let g:gitgutter_map_keys = 0
 nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>
 
-" Indent-guides plugin config {{{1
-" ================================
+" IndentLines plugin config {{{1
+" ==============================
 
-let g:indent_guides_auto_colors = 0
-augroup autoIndentGuides
-  au!
-  " Select colors for guides.
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue   ctermbg=4
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=magenta ctermbg=5
-augroup END
-let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-let g:indent_guides_default_mapping = 0
-let g:indent_guides_start_level = 2
-nnoremap <leader>ig :IndentGuidesToggle<CR>
+let g:indentLine_char = '|'
+
+nnoremap <leader>ig :IndentLinesToggle<CR>
 
 " Ack and Ag plugin config {{{1
 " =============================
