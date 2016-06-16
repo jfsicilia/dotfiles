@@ -131,6 +131,9 @@ set wildmode=list:longest
 " No audio warnings.
 set visualbell
 
+" Set lazyredraw.
+set lazyredraw
+
 " Fast file scrolling.
 set ttyfast
 
@@ -248,8 +251,8 @@ augroup autoVIMRC
   autocmd InsertLeave * :set relativenumber
 
   " Toggle lines number to ease tracking of active window.
-  autocmd WinEnter * :set number | set relativenumber
-  autocmd WinLeave * :set norelativenumber | set nonumber
+"  autocmd WinEnter * :set number | set relativenumber
+"  autocmd WinLeave * :set norelativenumber | set nonumber
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -305,8 +308,8 @@ nnoremap - ddp
 nnoremap _ ddkP
 
 " Some mappings to help converting to uppercase.
-inoremap <c-u> <esc>viWUviW<esc>a
-nnoremap <c-u> viWUW
+"inoremap <c-u> <esc>viWUviW<esc>a
+"nnoremap <c-u> viWUW
 
 " Allows line deleting in insert mode.
 inoremap <c-d> <esc>ddi
