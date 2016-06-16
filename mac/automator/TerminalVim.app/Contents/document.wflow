@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>409.2</string>
+	<string>419</string>
 	<key>AMApplicationVersion</key>
-	<string>2.5</string>
+	<string>2.6</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -51,7 +51,9 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	set cmd to "/usr/local/bin/vim -c startinsert"	if input is not in {} then		set myPath to POSIX path of input		set cmd to "/usr/local/bin/vim " &amp; quote &amp; myPath &amp; quote	end if		tell application "iTerm"		activate		set myTerm to (current terminal)		tell myTerm			set mySession to (make new session at the end of sessions)			tell mySession to exec command cmd		end tell	end tellend run</string>
+					<string>on run {input, parameters}	set filename to POSIX path of input	set cmd to "clear;cd `dirname " &amp; quote &amp; filename &amp; quote &amp; "`;vim " &amp; quote &amp; filename &amp; quote		tell application "iTerm"		activate
+		tell current window			set newTab to (create tab with default profile)			tell current session of newTab				write text cmd			end tell
+		end tell	end tellend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -68,15 +70,15 @@
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>InputUUID</key>
-				<string>6EDAE83F-C293-4C1B-82EF-33108C1CA5EF</string>
+				<string>584E5AD9-12CF-4EB4-9F41-9B6EEDCDAFF1</string>
 				<key>Keywords</key>
 				<array>
 					<string>Run</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>7D568E78-DA2A-4250-BA8A-83B4B1A906B3</string>
+				<string>14C53B49-0A67-41DC-B80C-F005C5A30FF9</string>
 				<key>UUID</key>
-				<string>D022D762-75DF-4845-A8A0-1DF26FD1178D</string>
+				<string>5B45672D-FC20-4414-9767-E48482870137</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -105,7 +107,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>649.000000:316.000000</string>
+				<string>649.000000:565.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
