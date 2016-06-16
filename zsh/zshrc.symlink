@@ -106,6 +106,15 @@ stty stop undef
 # Kill the lag between vi modes.
 export KEYTIMEOUT=1
 
+# PYENV configuration.
+
+# To use Homebrew's directories rather than ~/.pyenv 
+export PYENV_ROOT=/usr/local/var/pyenv
+# To enable shims and autocompletion add to your profile:
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# To enable auto-activation when entering folders with virtualenv
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 # Allows hide/show hidden files on MacOSX
 # alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; \
 #     killall Finder /System/Library/CoreServices/Finder.app"
