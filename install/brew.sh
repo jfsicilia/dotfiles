@@ -52,6 +52,8 @@ dev=(
     markdown
     python
     python3
+    pyenv
+    pyenv-virtualenv
     ruby
 )
 brew install ${dev[@]}
