@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>419</string>
+	<key>AMApplicationVersion</key>
+	<string>2.6</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Run AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>on run {input, parameters}		(* Your script goes here *)	(*
+	Script for OmniGraffle.
+	
+	It swaps the selected shape with his parent. It fixes all connections.
+*)tell application "OmniGraffle"	-- Get list of selected elements.	set selected to selection of first window	-- Continue if there is a selected graphic.	if ((count of selected) &gt; 0) then		-- Get first selected graphic.		set node1 to item 1 of selected				-- Continue if there is a child for node.		if (count of outgoing lines of node1) &gt; 0 then						tell front document				tell front canvas										-- Get link from node1 to node1 (in this case, node1's parent).					set linkN1toN2 to item 1 of outgoing lines of node1					-- Get node2 (in this case, node1's child).					set node2 to destination of linkN1toN2					-- Delete now link from N2 to N1. At the end N1 to N2 link will be created.					delete linkN1toN2										-- Get parents and children from both nodes.					set linksParentsToN2 to incoming lines of node2					set linksN2ToChildren to outgoing lines of node2					set linksParentsToN1 to incoming lines of node1					set linksN1ToChildren to outgoing lines of node1										-- Node2's parents become node1's parents					repeat with link in linksParentsToN2						set parentNode to source of link						delete link						tell (make new line) to set {source, destination} to {parentNode, node1}					end repeat										-- Node2's children become node1's children					repeat with link in linksN2ToChildren						set childNode to destination of link						delete link						tell (make new line) to set {source, destination} to {node1, childNode}					end repeat										-- Node1's parents become node2's parents					repeat with link in linksParentsToN1						set parentNode to source of link						delete link						tell (make new line) to set {source, destination} to {parentNode, node2}					end repeat										-- Node1's children become node2's children					repeat with link in linksN1ToChildren						set childNode to destination of link						delete link						tell (make new line) to set {source, destination} to {node2, childNode}					end repeat										-- Link from node2 to node1.									tell (make new line) to set {source, destination} to {node2, node1}									end tell			end tell					end if	end ifend tell
+	return inputend run</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>081957C6-F1EB-4F04-8CEF-03A235DF6E1E</string>
+				<key>Keywords</key>
+				<array>
+					<string>Run</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>BD5FDDA4-836F-41EC-BA42-4341E59151F0</string>
+				<key>UUID</key>
+				<string>E1CAB289-72EA-4DCD-BD96-91CD2D4458C3</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>449.000000:248.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.workflow</string>
+	</dict>
+</dict>
+</plist>
