@@ -29,11 +29,12 @@ Plug 'scrooloose/syntastic'
 " Fuzzy finder.
 Plug 'ctrlpvim/ctrlp.vim'
 " Check folder differences.
-Plug 'DirDiff.vim'
+" Plug 'DirDiff.vim'
 " Cols to rows and viceversa.
 Plug 'salsifis/vim-transpose'
 " Vim info line and tabs.
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Bookmarks.
 Plug 'MattesGroeger/vim-bookmarks'
 " Show symbol in gutter for changes in file.
