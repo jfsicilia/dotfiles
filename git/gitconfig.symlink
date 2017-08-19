@@ -20,3 +20,5 @@
 	prompt = false
 [alias]
 	d = difftool
+[pull]
+	rebase = true
