@@ -22,3 +22,5 @@
 	d = difftool
 [pull]
 	rebase = true
+[rerere]
+	enable = true
