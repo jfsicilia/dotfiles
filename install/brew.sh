@@ -100,6 +100,7 @@ apps=(
     openscad
     appcleaner
     yed
+    visual-studio-code
 # Quicklook plugins ____
     qlcolorcode
     qlstephen
@@ -107,16 +108,19 @@ apps=(
     quicklook-json
     qlprettypatch
     quicklook-csv
-    betterzipql
+    betterzip
     qlimagesize
     webpquicklook
     suspicious-package
+    qlvideo
+    quicklookase
+    
 # _____________________
     #remote-desktop-connection
-    #synology-cloud-station
-    #cura
+    synology-cloud-station
+    cura
     #eclipse-ide
-    #pycharm-cpycharm-ce
+    # pycharm-cpycharm-ce
     #popcorn-time
 )
 brew cask install ${apps[@]}
