@@ -51,9 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	set filename to POSIX path of input	set cmd to "clear;cd `dirname " &amp; quote &amp; filename &amp; quote &amp; "`;vim " &amp; quote &amp; filename &amp; quote		tell application "iTerm"		activate
-		tell current window			set newTab to (create tab with default profile)			tell current session of newTab				write text cmd			end tell
-		end tell	end tellend run</string>
+					<string>on run {input, parameters}	set filename to POSIX path of input	--set filename to "/Users/juan/tmp/text.txt"	set cmd to "clear;cd `dirname " &amp; quote &amp; filename &amp; quote &amp; "`;vim " &amp; quote &amp; filename &amp; quote		tell application "iTerm"		activate		set myWindow to (create window with default profile)		tell myWindow			--set mySession to (make new session at the end of sessions)			tell current session to write text cmd		end tell	end tell		--	tell application "iTerm"	--		activate	--		tell current window	--			set newTab to (create tab with default profile)	--			tell current session of newTab	--				write text cmd	--			end tell	--		end tell	--	end tellend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -107,7 +105,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>649.000000:565.000000</string>
+				<string>449.000000:316.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
