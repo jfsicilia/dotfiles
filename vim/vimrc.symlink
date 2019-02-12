@@ -20,6 +20,16 @@ call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 " File explorer.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Comment helper plugin.
+Plug 'tpope/vim-commentary'
+" Easy motion plugin.
+Plug 'easymotion/vim-easymotion'
+" Surround text with ", ', {, [, ( and tags.
+Plug 'tpope/vim-surround'
+" Vim indent pluging.
+Plug 'michaeljsmith/vim-indent-object'
+" Sneak motion plugin.
+Plug 'justinmk/vim-sneak'
 " Decorate nerdtree with git state symbols.
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plugin for git.
@@ -161,6 +171,11 @@ if &t_Co > 2 || has("gui_running")
   syntax on
 endif
 
+" Switch cursor shape when in insert/normal mode.
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[1 q"
+
+
 " Wrapping
 " --------
 
@@ -217,8 +232,8 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 " Macros {{{1
 " ===========
 
-" Writes a comment with '=' characters to the full length of the prev line.
-let @u='YPjwv$r=0'
+" Convert word to uppercase.
+let @u='viWUW'
 
 " Autocommand group {{{1
 " ======================
@@ -273,6 +288,8 @@ augroup END
 " NOTE: Ex mode is like the command mode for batch processing.
 nnoremap Q gq
 
+" F1 is used for help.
+
 " Set paste mode. Helps when pasting from other apps to allow 1to1 pastes.
 set pastetoggle=<F2>
 
@@ -286,14 +303,28 @@ nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>
 " Enables F5 to toggle between dark and light colorscheme.
 call togglebg#map("<F5>")
 
+" F7 and shift F7 to access changes in a diff.
+nnoremap <F7> ]c
+nnoremap <S-F7> [c
+
+" Enables F6 to toggle search hightlighting.
+let hlstate=0
+nnoremap <C-n> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+
+" Redefine d(delete), c(change), x(replace) sending text to void register.
+nnoremap <leader>d "_d
+nnoremap <leader>D "_D
+nnoremap <leader>c "_c
+nnoremap <leader>C "_C
+nnoremap <leader>x "_x
+nnoremap <leader>X "_X
+
+
 " Enable/disable spelling.
 nnoremap <silent> <leader>s :set spell!<CR>
 
 " Fast .vimrc editing.
 nnoremap <leader>v :e $MYVIMRC<CR>
-
-" Hides search highlighting.
-nnoremap <leader><space> :noh<CR>
 
 " Note that remapping C-s requires flow control to be disabled
 " (e.g. in .bashrc or .zshrc)
@@ -308,33 +339,47 @@ vnoremap <tab> %
 nnoremap - ddp
 nnoremap _ ddkP
 
-" Some mappings to help converting to uppercase.
-"inoremap <c-u> <esc>viWUviW<esc>a
-"nnoremap <c-u> viWUW
+" <leader>a to select all file.
+nnoremap <leader>a ggVG
+
+" Moves right and left when in insert mode.
+inoremap <c-l> <right>
+inoremap <c-h> <left>
+
+" Creates a line below current with same length and filled with '='.
+nnoremap <leader>= YPjwv$r=0
 
 " Allows line deleting in insert mode.
 inoremap <c-d> <esc>ddi
 
 " Use spacebar to toggle code folding.
-nnoremap <space> za
-" Create a manual code folding if foldmethod is manual or marker. 
-vnoremap <space> zf
+" Create a manual code folding if foldmethod is manual or marker.
+nnoremap <leader>f za
+vnoremap <leader>f zf
 
-" Cmd-[ or ] to indent forward or bacward.
+" <leader>+[ or ] to indent forward or bacward.
 nnoremap <leader>[ <<
 nnoremap <leader>] >>
 vnoremap <leader>[ <gv
 vnoremap <leader>] >gv
+
+" Insert blank line below or above without moving cursor.
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 " Chrome kind of tab selection.
 noremap <C-tab> gt
 noremap <C-S-tab> gT
 
 " Use arrow to resize windows.
-nnoremap <left> <C-w>>
-nnoremap <right> <C-w><
+nnoremap <left> <C-w><
+nnoremap <right> <C-w>>
 nnoremap <up> <C-w>-
 nnoremap <down> <C-w>+
+
+" Easy duplicate lines.
+nnoremap <leader>p Yp
+nnoremap <leader>P YP
 
 " Shortcuts to move arround windows.
 nnoremap <leader>h <C-w>h
@@ -346,6 +391,9 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>m :bp<CR>
 nnoremap <leader>, :b#<CR>
 nnoremap <leader>. :bn<CR>
+" Show list of buffers and wait for user selection.
+nnoremap <leader>/ :buffers<CR>:buffer<Space>
+
 
 " Fast access to splitting window.
 nnoremap <leader>- :sp<CR>
@@ -371,9 +419,19 @@ inoremap <C-W> <C-G>u<C-W>
 " Toggles wrapping on and off.
 nnoremap <leader>w :set wrap!<CR>
 
+" Trim trailing whitespaces.
+nnoremap <silent> <leader>W :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>
+    \ :nohl<CR>
+
 " Closes buffer and deletes it bringing next buffer to current window.
 nnoremap <leader>q :Bclose<CR>
 nnoremap <leader>Q :Bclose!<CR>
+
+" Fast access to begin and end of line.
+nnoremap H ^
+nnoremap L $
+
+nnoremap <leader>1 1gt
 
 " Writes buffer and closes/deletes it bringing next buffer to current window.
 nnoremap <leader>wq :w<CR>:Bclose<CR>
@@ -383,6 +441,7 @@ nnoremap <leader>co :copen<CR>
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprevious<CR>
+
 " Airline plugin config {{{1
 " ==========================
 
@@ -404,6 +463,28 @@ let g:airline#extensions#syntastic#enabled = 1
 " Enable plugin for tmux.
 let g:airline#extensions#tmuxline#enabled = 1
 
+" Sneak plugin {{{1
+" =================
+
+" To use sneak plugin press s + 2 chars (forward) or S + 2 chars (backwards)
+" in normal mode to search for that 2 chars combination. To search further
+" press ;
+
+" Easymotion plugin config {{{1
+" =============================
+
+" Change the default EasyMotion shading to something more readable with Solarized
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionTarget2First Search
+hi link EasyMotionShade Comment
+
+" Remap easymotion prefix to <leader>s
+map <leader>s <Plug>(easymotion-prefix)
+
+" Use space for basic easymotion functionality.
+nmap <space> <Plug>(easymotion-W)
+nmap <leader><space> <Plug>(easymotion-B)
+
 " CtrlP plugin config {{{1
 " ========================
 
@@ -418,17 +499,16 @@ let g:ctrlp_custom_ignore = {
 " control. It also supports works with .svn, .hg, .bzr.
 let g:ctrlp_working_path_mode = 'r'
 
+" By default CTRL + p, starts CtrlP plugin.
+
 " Use a leader instead of the actual named binding
-nnoremap <leader>p :CtrlP<CR>
+" nnoremap <leader>p :CtrlP<CR>
 
 " Easy bindings for its various modes
 nnoremap <leader>bb :CtrlPBuffer<CR>
 nnoremap <leader>bf :CtrlP<CR>
 nnoremap <leader>bm :CtrlPMixed<CR>
 nnoremap <leader>br :CtrlPMRU<CR>
-
-" Show list of buffers and wait for user selection.
-nnoremap <leader>/ :buffers<CR>:buffer<Space>
 
 " NERDTree plugin config {{{1
 " ===========================
@@ -532,8 +612,6 @@ nnoremap <leader>" viw<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>v
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>v
-nnoremap H ^
-nnoremap L $
 inoremap jk <esc>
 nnoremap <leader>t :match Error /\v.*\s+$/<CR>
 nnoremap <leader>T :match none<CR>
