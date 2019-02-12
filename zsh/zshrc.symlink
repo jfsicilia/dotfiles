@@ -94,7 +94,8 @@ source $ZSH/oh-my-zsh.sh
 # Enable LS colors.
 export CLICOLOR=YES
 export LSCOLORS="exdxcxfxbxegedabagacad"
-export LS_COLORS="di=34;100:ln=33;100:so=32;100:pi=35;100:ex=31;100:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+# export LS_COLORS="di=34;100:ln=33;100:so=32;100:pi=35;100:ex=31;100:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+export LS_COLORS="di=34:ln=33:so=32:pi=35:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
 
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
@@ -147,3 +148,7 @@ setjdk 1.7
 # param1: Name of command.
 function bashman() { man bash | less -p "^       $1 "; }
 
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+alias ubrew="brew update && brew upgrade && brew cleanup && brew doctor"
