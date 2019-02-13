@@ -522,5 +522,6 @@
     "workbench.activityBar.visible": false,
     "[markdown]": {},
     "terminal.integrated.scrollback": 10000,
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "python.autoComplete.addBrackets": true
 }
