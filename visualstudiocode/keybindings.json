@@ -92,5 +92,10 @@
         "key": "pageup",
         "command": "-workbench.action.terminal.scrollUpPage",
         "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+backspace",
+        "command": "notifications.clearAll",
+        "when": "textInputFocus && !editorReadonly"
     }
 ]
