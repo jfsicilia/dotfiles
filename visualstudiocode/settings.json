@@ -80,6 +80,15 @@
            "before": ["<leader>", "o"],
            "commands": ["editor.action.insertLineAfter"]
        }, 
+       // Format document.
+       {
+           "before": ["<leader>", "="],
+           "commands": ["editor.action.formatDocument"]
+       },
+    //    {
+    //        "before": ["<leader>", "<backspace>"],
+    //        "commands": ["notifications.clearAll"]
+    //    },
        // Fast access to end of line.
        {
            "before": ["L"],
@@ -513,7 +522,7 @@
     "breadcrumbs.enabled": false,
     "emmet.triggerExpansionOnTab": true,
     "[python]": {
-        
+        "editor.formatOnPaste": false
     },
     "vim.hlsearch": true,
     "editor.wordWrap": "wordWrapColumn",
@@ -523,5 +532,8 @@
     "[markdown]": {},
     "terminal.integrated.scrollback": 10000,
     "python.jediEnabled": false,
-    "python.autoComplete.addBrackets": true
+    "python.autoComplete.addBrackets": true,
+    "python.unitTest.pyTestEnabled": true,
+    "autoDocstring.docstringFormat": "google",
+    "python.formatting.provider": "black"
 }
