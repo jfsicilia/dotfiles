@@ -58,70 +58,70 @@ dev=(
 )
 brew install ${dev[@]}
 
+# Other
+other=(
+    graphviz
+)
+brew install ${other[@]}
+
 cecho "Installing homebrew cask packages..." $green
 brew install caskroom/cask/brew-cask
 
 # Casks.
 apps=(
-    android-file-transfer
-    seil
-    iterm2
-    caffeine
-    cloud
-    dash
-    divvy
-    ukelele
-    freecad
-    karabiner
-    eve
-    cheatsheet
     alfred
+    android-file-transfer
+    appcleaner
     bartender
-    disk-inventory-x
-    dropbox
-    sketchup
     bettertouchtool
-    evernote
-    keepassx
+    betterzip
+    caffeine
+    cheatsheet
+    # cura        // Por ahora prefiero no tener la última versión.
+    dash
+    disk-inventory-x
+    divvy
+    dropbox
+    eve
+    filezilla
+    freecad
+    google-chrome
+    google-earth-pro
+    # istat-menus  // Tienes comprada la versión 5 y va por la >6
+    iterm2
+    # karabiner    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
+    keepassxc
+    macvim
+    openscad
+    pdf-expert
+    popchar
+    # remote-desktop-connection   // Not available.
+    sketchup
     skype
     spotify
     steam
-    google-chrome
+    # synology-cloud-station    // Not available.
     the-unarchiver
-    vmware-fusion
-    vlc
-    android-file-transfer
-    filezilla
-    google-earth
-    graphviz
-    istat-menus
-    macdown
-    sketchup
-    openscad
-    appcleaner
-    yed
+    ukelele
+    virtualbox
     visual-studio-code
+    vlc
+    yed
+
 # Quicklook plugins ____
     qlcolorcode
-    qlstephen
-    qlmarkdown
-    quicklook-json
-    qlprettypatch
-    quicklook-csv
-    betterzip
     qlimagesize
-    webpquicklook
-    suspicious-package
+    qlmarkdown
+    qlprettypatch
+    qlstephen
     qlvideo
+    quicklook-csv
+    quicklook-json
     quicklookase
+    suspicious-package
+    webpquicklook
     
 # _____________________
-    #remote-desktop-connection
-    synology-cloud-station
-    cura
-    #eclipse-ide
-    # pycharm-cpycharm-ce
-    #popcorn-time
 )
 brew cask install ${apps[@]}
 
