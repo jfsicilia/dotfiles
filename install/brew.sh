@@ -87,7 +87,7 @@ apps=(
     freecad
     google-chrome
     google-earth-pro
-    # istat-menus  // Tienes comprada la versión 5 y va por la >6
+    istat-menus  
     iterm2
     # karabiner    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
     keepassxc
