@@ -409,6 +409,9 @@ nnoremap <leader>ep :execute "rightbelow split " . bufname("#")<CR>
 " Shortcuts for diff with original file.
 nnoremap <Leader>do :DiffOrig<CR>
 nnoremap <leader>dq :bd<CR>:diffoff!<CR>
+" Diff between open windows.
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>dn :windo set nodiff<CR>
 
 " CTRL-U in insert mode deletes a lot. Use CTRL-G u (break undo sequence,
 " start new change), so that you can undo CTRL-U after in normal mode.
