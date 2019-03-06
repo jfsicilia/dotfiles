@@ -77,7 +77,7 @@ apps=(
     betterzip
     caffeine
     cheatsheet
-    # cura        // Por ahora prefiero no tener la última versión.
+    # ultimaker-cura        // Por ahora prefiero no tener la última versión.
     dash
     disk-inventory-x
     divvy
