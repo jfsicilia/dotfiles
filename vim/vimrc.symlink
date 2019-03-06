@@ -39,7 +39,7 @@ Plug 'scrooloose/syntastic'
 " Fuzzy finder.
 Plug 'ctrlpvim/ctrlp.vim'
 " Check folder differences.
-" Plug 'DirDiff.vim'
+Plug 'will133/vim-dirdiff'
 " Cols to rows and viceversa.
 Plug 'salsifis/vim-transpose'
 " Vim info line and tabs.
@@ -176,7 +176,7 @@ let &t_SI = "\e[5 q"
 let &t_EI = "\e[1 q"
 
 
-" Wrapping
+
 " --------
 
 " Set wrapping and max chars per line
