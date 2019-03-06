@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>444.38</string>
+	<key>AMApplicationVersion</key>
+	<string>2.9</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Run AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>(*Find and replace based onEvernote Note FolderVersion 1.022018/03/15SCRIPT INFORMATIONRetrieves the note's Mac folder from the databaseTERMS OF USE:CHANGELOG:RECOMMENDED INSTALLATION AND USAGE INSTRUCTIONS:- the database folder is hard-coded for variable targetDatabaseFolder and will have to be adjusted for the user*)global aNoteglobal targetFilepathset databaseFolder to "/Users/juan/Library/Application Support/com.evernote.Evernote/accounts/www.evernote.com/694744/"set databaseFile to databaseFolder &amp; "localNoteStore/LocalNoteStore.sqlite"set noteUID to getNoteUID()set localFolder to databaseFolder &amp; "content/" &amp; getLocalFolder(databaseFile, noteUID)-- tell application "Finder" to open folder localFolder as POSIX file------------------------------------------------------------GetvNote Guid------------------------------------------------------------- Parse from linkon getNoteUID()		tell application "Evernote"		set theSelection to get selection		set theNote to item 1 of theSelection		set theLink to note link of theNote				set _sel to selection		-- Gets the Note(s) Selected in Evernote		if _sel ≠ {} then			set aNote to first item of _sel		end if			end tell		set AppleScript's text item delimiters to "/"	set parsedList to text items of theLink	set noteUID to item 7 of parsedList	return noteUID	end getNoteUID------------------------ Get Local Folder------------------------  Retrive from sqlite databaseon getLocalFolder(databaseFile, noteUID)		set sqlText to "SELECT ZLOCALUUID FROM ZenNote where ZGUID = '" &amp; noteUID &amp; "';"	set localFolder to text items of (do shell script "sqlite3 " &amp; quote &amp; databaseFile &amp; quote &amp; " " &amp; quote &amp; sqlText &amp; quote)end getLocalFolderset targetFilepath to POSIX file (localFolder &amp; "/content.enml")tell application "Evernote"	open note window with aNote	tell application "System Events"		tell process "Evernote" to keystroke "s" using {command down, control down}		tell process "Evernote" to keystroke "s" using {command down}	end tellend tell-- do shell script "open -a TextEdit  targetFilepath"-- display dialog targetFilepathtell application "TextEdit"	activate	open targetFilepath		tell (windows whose id is not (get id of front window) and visible is true)		set miniaturized to true	end tell	set bounds of front window to {279, 111, 1180, 719}			tell application "System Events"		-- open the Replace dialog		tell process "TextEdit" to keystroke "f" using {option down, command down}		-- place cursor in the "Find" portion		tell process "TextEdit" to keystroke "f" using {command down}		-- paste the text from the clipboard . This is meant to be used if you copied what you wanted changed from Evernote before running this script.		tell process "TextEdit" to keystroke "v" using {command down}		tell process "TextEdit" to keystroke tab		tell process "TextEdit" to keystroke tab		tell process "TextEdit" to keystroke tab		tell process "TextEdit" to keystroke tab	end tellend tellrepeat	if application "TextEdit" is not running then exit repeat	delay 1end repeattell application "System Events" to set frontmost of process "Evernote" to truetell application "Evernote"	close window 1	open note window with aNote	tell application "System Events"		tell process "Evernote" to keystroke "l" using {command down}		delay 0.25		tell process "Evernote" to keystroke tab		delay 0.25		tell process "Evernote" to key code "49"		delay 0.25		tell process "Evernote" to key code "51"		delay 0.25		tell process "Evernote" to keystroke "s" using {command down, control down}			end tell	end tell</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>C7CCB483-8304-45C5-8062-F3BE346E3BD5</string>
+				<key>Keywords</key>
+				<array>
+					<string>Run</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>2D058ECF-E529-484D-9207-9C5D73A70186</string>
+				<key>UUID</key>
+				<string>352E9471-1AD7-479C-8D18-9258B616EB85</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>649.000000:769.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>applicationBundleID</key>
+		<string>com.evernote.Evernote</string>
+		<key>applicationBundleIDsByPath</key>
+		<dict>
+			<key>/Applications/Evernote.app</key>
+			<string>com.evernote.Evernote</string>
+		</dict>
+		<key>applicationPath</key>
+		<string>/Applications/Evernote.app</string>
+		<key>applicationPaths</key>
+		<array>
+			<string>/Applications/Evernote.app</string>
+		</array>
+		<key>inputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>outputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>presentationMode</key>
+		<integer>11</integer>
+		<key>processesInput</key>
+		<integer>0</integer>
+		<key>serviceApplicationBundleID</key>
+		<string>com.evernote.Evernote</string>
+		<key>serviceApplicationPath</key>
+		<string>/Applications/Evernote.app</string>
+		<key>serviceInputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceOutputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceProcessesInput</key>
+		<integer>0</integer>
+		<key>systemImageName</key>
+		<string>NSActionTemplate</string>
+		<key>useAutomaticInputType</key>
+		<integer>0</integer>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.servicesMenu</string>
+	</dict>
+</dict>
+</plist>
