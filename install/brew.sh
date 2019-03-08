@@ -43,7 +43,7 @@ brew install ${cli[@]}
 # development tools
 dev=(
     git
-    macvim --override-system-vim
+    macvim
     reattach-to-user-namespace
     tmux
     zsh
@@ -71,42 +71,75 @@ brew install caskroom/cask/brew-cask
 apps=(
     alfred
     android-file-transfer
+    android-studio
     appcleaner
+    arduino
+    balenaetcher
     bartender
     bettertouchtool
     betterzip
     caffeine
     cheatsheet
+    command-tab-plus
     # ultimaker-cura        // Por ahora prefiero no tener la última versión.
+    darktable
     dash
+    default-folder-x
+    diffmerge
     disk-inventory-x
     divvy
+    drawio
     dropbox
+    duet
+    dupeguru
+    eagle
+    easyfind
     eve
+    # evernote
     filezilla
+    find-any-file
+    firefox
+    flixtools
     freecad
+    freefilesync
+    freemind
+    geogebra
     google-chrome
     google-earth-pro
-    istat-menus  
+    hex-fiend
+    ichm
+    istat-menus
     iterm2
-    # karabiner    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
+    joplin
+    # karabiner-elements    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
     keepassxc
     macvim
+    namechanger
     openscad
+    # paragon-ntfs  // No lo pongo por si me deja de funcionar el que ya tengo. Igual le valen las credenciales del disco duro Samsung.
+    plex-media-player
     pdf-expert
     popchar
+    rawtherapee
     # remote-desktop-connection   // Not available.
     sketchup
     skype
+    slack
     spotify
     steam
+    stellarium
     # synology-cloud-station    // Not available.
+    tagspaces
     the-unarchiver
+    trickster
+    typora
     ukelele
     virtualbox
     visual-studio-code
     vlc
+    whatsapp
     yed
+    zoomus
 
 # Quicklook plugins ____
     qlcolorcode
@@ -120,7 +153,7 @@ apps=(
     quicklookase
     suspicious-package
     webpquicklook
-    
+
 # _____________________
 )
 brew cask install ${apps[@]}
