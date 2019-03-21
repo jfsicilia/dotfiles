@@ -307,7 +307,7 @@ call togglebg#map("<F5>")
 nnoremap <F7> ]c
 nnoremap <S-F7> [c
 
-" Enables F6 to toggle search hightlighting.
+" Enables <C-n> to toggle search hightlighting.
 let hlstate=0
 nnoremap <C-n> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
 
@@ -445,6 +445,12 @@ nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprevious<CR>
 
+" Netrw {{{1
+" ==========
+
+" Open url between () with the OS app associated.
+nmap <leader>u vi)gx
+
 " Airline plugin config {{{1
 " ==========================
 
@@ -479,14 +485,24 @@ let g:airline#extensions#tmuxline#enabled = 1
 " Change the default EasyMotion shading to something more readable with Solarized
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionTarget2First Search
+hi link EasyMotionTarget2Second Search
 hi link EasyMotionShade Comment
 
 " Remap easymotion prefix to <leader>s
 map <leader>s <Plug>(easymotion-prefix)
 
-" Use space for basic easymotion functionality.
-nmap <space> <Plug>(easymotion-W)
-nmap <leader><space> <Plug>(easymotion-B)
+" Removed ; from keys (harder to press).
+let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf'
+" Jump to anywhere default minus end of word.
+let g:EasyMotion_re_anywhere = '\v(<.|^$)|(\l)\zs(\u)|(_\zs.)|(#\zs.)'
+
+" Use space for word movement (Bidirectional WORD find).
+" nmap <space> <Plug>(easymotion-bd-W)
+
+" Use space for jump to anywhere.
+nmap <space> <Plug>(easymotion-jumptoanywhere)
+" Use leader space for line movement.
+nmap <leader><space> <Plug>(easymotion-bd-jk)
 
 " CtrlP plugin config {{{1
 " ========================
