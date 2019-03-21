@@ -10,8 +10,7 @@
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "vscode-icons",
     "editor.fontSize": 14,
-    "vim.foldfix": false,
-    "editor.lineNumbers": "relative",
+    "vim.foldfix": true,
     "vim.leader": ",",
     "vim.easymotion": true,
     "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf",
@@ -85,6 +84,11 @@
            "before": ["<leader>", "="],
            "commands": ["editor.action.formatDocument"]
        },
+       // Use leader + u to open link below cursor.
+       {
+           "before": ["<leader>","u"],
+           "commands": ["editor.action.openLink"]
+       }, 
     //    {
     //        "before": ["<leader>", "<backspace>"],
     //        "commands": ["notifications.clearAll"]
@@ -401,15 +405,15 @@
        // Now we set keymappings for easymotion extension.
        // ----------------------------------------------
        
-       // Use leader + space to activate easymotion backward word. 
+       // Use leader + spacebar to activate easymotion jump to line.
        {
            "before": ["<leader>","<space>"],
-           "after": ["<leader>", "<leader>", "b"]
+           "after": ["<leader>", "<leader>", "<leader>", "b", "d", "j", "k"]
        }, 
        // Use space to activate easymotion forward word. 
        {
            "before": ["<space>"],
-           "after": ["<leader>", "<leader>", "w"]
+           "after": ["<leader>", "<leader>", "<leader>", "j"]
        }, 
        // (Easymotion activation): Use also leader + s to activate
        // easymotion plugin (default key combitation to activate is
@@ -527,7 +531,7 @@
     "vim.hlsearch": true,
     "editor.wordWrap": "wordWrapColumn",
     "vim.textwidth": 76,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "workbench.activityBar.visible": false,
     "[markdown]": {},
     "terminal.integrated.scrollback": 10000,
@@ -535,5 +539,9 @@
     "python.autoComplete.addBrackets": true,
     "python.unitTest.pyTestEnabled": true,
     "autoDocstring.docstringFormat": "google",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.lineNumbers": "relative",
+    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]"
 }
