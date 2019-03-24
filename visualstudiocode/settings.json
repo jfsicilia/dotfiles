@@ -89,10 +89,11 @@
            "before": ["<leader>","u"],
            "commands": ["editor.action.openLink"]
        }, 
-    //    {
-    //        "before": ["<leader>", "<backspace>"],
-    //        "commands": ["notifications.clearAll"]
-    //    },
+       // Clear notifications.
+       {
+           "before": ["<leader>", "<backspace>"],
+           "commands": ["notifications.clearAll"]
+       },
        // Fast access to end of line.
        {
            "before": ["L"],
@@ -111,7 +112,8 @@
        // Redefinimos <leader>+a para seleccionar todo.
        {
            "before": ["<leader>", "a"],
-           "commands": ["editor.action.selectAll"]
+        //    "commands": ["editor.action.selectAll"]
+           "after": ["g", "g", "V", "G"]
        }, 
        // Indenta a la izquierda.
        {
@@ -140,7 +142,7 @@
            "before": ["<leader>", "d"],
            "after": ["\"", "_", "d"]
        }, 
-       // Emula la tecla D pero usando el clipboard vacío.
+       // E
        {
            "before": ["<leader>", "D"],
            "after": ["\"", "_", "D"]
@@ -243,6 +245,16 @@
        {
            "before": ["g", "m"],
            "commands": ["editor.action.toggleMinimap"]
+       }, 
+       // Go to prev change
+       {
+           "before": ["g", "["],
+           "commands": ["workbench.action.compareEditor.previousChange"]
+       }, 
+       // Go to next change
+       {
+           "before": ["g", "]"],
+           "commands": ["workbench.action.compareEditor.nextChange"]
        }, 
 
        //------------------------------ 
@@ -528,6 +540,12 @@
     "[python]": {
         "editor.formatOnPaste": false
     },
+    "macros": {
+        "runPythonAndFocusTerminal": [
+            "python.execInTerminal",
+            "workbench.action.terminal.focus"
+        ]
+    },
     "vim.hlsearch": true,
     "editor.wordWrap": "wordWrapColumn",
     "vim.textwidth": 76,
@@ -543,5 +561,7 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.lineNumbers": "relative",
-    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]"
+    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.renderSideBySide": true
 }

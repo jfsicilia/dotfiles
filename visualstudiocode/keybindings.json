@@ -97,5 +97,30 @@
         "key": "cmd+backspace",
         "command": "notifications.clearAll",
         "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+F5",
+        "command": "macros.runPythonAndFocusTerminal",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+f5",
+        "command": "-workbench.action.editor.nextChange",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+f5",
+        "command": "-workbench.action.editor.previousChange",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+f5",
+        "command": "-workbench.action.compareEditor.nextChange",
+        "when": "textCompareEditorVisible"
+    },
+    {
+        "key": "shift+alt+f5",
+        "command": "-workbench.action.compareEditor.previousChange",
+        "when": "textCompareEditorVisible"
     }
 ]
