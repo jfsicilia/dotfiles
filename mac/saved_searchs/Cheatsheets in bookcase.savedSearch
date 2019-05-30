@@ -504,7 +504,7 @@
 			<key>ShowToolbar</key>
 			<true/>
 			<key>WindowBounds</key>
-			<string>{{960, 0}, {960, 1057}}</string>
+			<string>{{338, -800}, {1280, 777}}</string>
 		</dict>
 	</dict>
 </dict>
