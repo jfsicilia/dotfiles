@@ -106,15 +106,19 @@ apps=(
     geogebra
     google-chrome
     google-earth-pro
+    grandperspective
     hex-fiend
     ichm
+    iina
     istat-menus
     iterm2
     joplin
     # karabiner-elements    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
     keepassxc
+    lightworks
     macvim
     namechanger
+    onyx
     openscad
     # paragon-ntfs  // No lo pongo por si me deja de funcionar el que ya tengo. Igual le valen las credenciales del disco duro Samsung.
     plex-media-player
