@@ -1040,7 +1040,7 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.lineNumbers": "relative",
-    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]",
+    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]|\\(\\)|\\[\\]|\\{\\}|\\'\\'|\"\"",
     "diffEditor.ignoreTrimWhitespace": true,
     "diffEditor.renderSideBySide": true,
     "editor.accessibilitySupport": "off",
