@@ -6,11 +6,13 @@
     "python.linting.flake8Enabled": false,
     "window.zoomLevel": 1,
     // Column rules at column 80 and 120.
-    "editor.rulers": [80,120],
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "python.formatting.blackArgs": ["--line-length", "80"],
     "workbench.colorTheme": "Solarized Dark",
-    "workbench.iconTheme": "vscode-icons",
     "editor.fontSize": 14,
-    "vim.foldfix": true,
     "vim.leader": ",",
     "vim.easymotion": true,
     "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf",
@@ -21,188 +23,379 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         // Toggles line wrapping.
         {
-            "before": ["<leader>", "w"],
-            "commands": ["editor.action.toggleWordWrap"]
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                "editor.action.toggleWordWrap"
+            ]
         },
         // Trim trailing whitespace.
         {
-            "before": ["<leader>", "W"],
-            "commands": ["editor.action.trimTrailingWhitespace"]
+            "before": [
+                "<leader>",
+                "W"
+            ],
+            "commands": [
+                "editor.action.trimTrailingWhitespace"
+            ]
         },
         // Show markdown preview.
         {
-            "before": ["<leader>", "M"],
-            "commands": ["markdown.showPreviewToSide"]
+            "before": [
+                "<leader>",
+                "M"
+            ],
+            "commands": [
+                "markdown.showPreviewToSide"
+            ]
         },
         // Turnoff search highlight.
         {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
-        }, 
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
         // Permite dividir el editor de forma vertical.
         {
-            "before": ["<leader>", "|"],
-            "commands": ["workbench.action.splitEditorRight"]
+            "before": [
+                "<leader>",
+                "|"
+            ],
+            "commands": [
+                "workbench.action.splitEditorRight"
+            ]
         },
         // Permite dividir el editor de forma horizontal.
         {
-            "before": ["<leader>", "-"],
-            "commands": ["workbench.action.splitEditorDown"]
+            "before": [
+                "<leader>",
+                "-"
+            ],
+            "commands": [
+                "workbench.action.splitEditorDown"
+            ]
         },
         // Duplicate current line below
         {
-            "before": ["<leader>", "p"],
-            "after": ["Y", "p"]
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "Y",
+                "p"
+            ]
         },
         // Duplicate current line above
         {
-            "before": ["<leader>", "P"],
-            "after": ["Y", "p"]
+            "before": [
+                "<leader>",
+                "P"
+            ],
+            "after": [
+                "Y",
+                "p"
+            ]
         },
         // Redefinimos _ para subir la línea actual.
-       {
-           "before": ["_"],
-           "commands": ["editor.action.moveLinesUpAction"]
-       }, 
-       // Redefinimos - para bajar la línea actual.
-       {
-           "before": ["-"],
-           "commands": ["editor.action.moveLinesDownAction"]
-       }, 
+        {
+            "before": [
+                "_"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        // Redefinimos - para bajar la línea actual.
+        {
+            "before": [
+                "-"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
         // Creamos una linea vacía encima 
         {
-           "before": ["<leader>", "O"],
-           "commands": ["editor.action.insertLineBefore"]
-       }, 
+            "before": [
+                "<leader>",
+                "O"
+            ],
+            "commands": [
+                "editor.action.insertLineBefore"
+            ]
+        },
         // Creamos una linea vacía debajo 
-       {
-           "before": ["<leader>", "o"],
-           "commands": ["editor.action.insertLineAfter"]
-       }, 
-       // Format document.
-       {
-           "before": ["<leader>", "="],
-           "commands": ["editor.action.formatDocument"]
-       },
-       // Use leader + u to open link below cursor.
-       {
-           "before": ["<leader>","u"],
-           "commands": ["editor.action.openLink"]
-       }, 
-       // Clear notifications.
-       {
-           "before": ["<leader>", "<backspace>"],
-           "commands": ["notifications.clearAll"]
-       },
-       // Fast access to end of line.
-       {
-           "before": ["L"],
-           "after": ["$"]
-       }, 
-       // Fast access to begin of line.
-       {
-           "before": ["H"],
-           "after": ["^"]
-       }, 
-       // Redefinimos tab como el buscador de [, {, (. Es más sencillo que apretar %.
-       {
-           "before": ["<tab>"],
-           "after": ["%"]
-       }, 
-       // Redefinimos <leader>+a para seleccionar todo.
-       {
-           "before": ["<leader>", "a"],
-        //    "commands": ["editor.action.selectAll"]
-           "after": ["g", "g", "V", "G"]
-       }, 
-       // Indenta a la izquierda.
-       {
-           "before": ["<leader>", "["],
-           "after": ["<", "<"]
-       }, 
-       // Indenta a la derecha.
-       {
-           "before": ["<leader>", "]"],
-           "after": [">", ">"]
-       }, 
-       // Abre el folding de la línea donde está el cursor.
-       {
-           "before": ["<leader>", "f"],
-           "after": ["z","O"]
-       }, 
-       // Cierra el folding de la línea donde está el cursor.
-       {
-           "before": ["<leader>", "F"],
-           "commands": ["editor.foldRecursively"]
-       }, 
-
-
-       // Emula la tecla d pero usando el clipboard vacío.
-       {
-           "before": ["<leader>", "d"],
-           "after": ["\"", "_", "d"]
-       }, 
-       // E
-       {
-           "before": ["<leader>", "D"],
-           "after": ["\"", "_", "D"]
-       }, 
-       // Emula la tecla x pero usando el clipboard vacío.
-       {
-           "before": ["<leader>", "x"],
-           "after": ["\"", "_", "x"]
-       }, 
-       // Emula la tecla X pero usando el clipboard vacío.
-       {
-           "before": ["<leader>", "X"],
-           "after": ["\"", "_", "X"]
-       }, 
-       // Emula la tecla c pero usando el clipboard vacío.
-       {
-           "before": ["<leader>", "c"],
-           "after": ["\"", "_", "c"]
-       }, 
-       // Emula la tecla C pero usando el clipboard vacío.
-       {
-           "before": ["<leader>", "C"],
-           "after": ["\"", "_", "C"]
-       }, 
-
-       // Crea un cursor en la columna de abajo.
-       {
-           "before": ["g", "<down>"],
-           "commands": ["editor.action.insertCursorBelow"]
-       }, 
-       // Crea un cursor en la columna de encima.
-       {
-           "before": ["g", "<up>"],
-           "commands": ["editor.action.insertCursorAbove"]
-       }, 
-       // Crea cursores en todas las coincidencias de la palabra donde está el cursor.
-       {
-           "before": ["g", "l"],
-           "commands": ["editor.action.selectHighlights"]
-       }, 
-       // Peek definition
-       {
-           "before": ["g", "D"],
-           "commands": ["editor.action.peekDefinition"]
-       }, 
-       // Show definition aside.
-       {
-           "before": ["<leader>", "g", "d"],
-           "commands": ["editor.action.revealDefinitionAside"]
-       }, 
-       // Quick fix.
-       {
-           "before": ["g", "f"],
-           "commands": ["editor.action.quickFix"]
-       }, 
-       // Rename symbol.
-       {
-           "before": ["<leader>", "r"],
-           "commands": ["editor.action.rename"]
-        }, 
+        {
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "commands": [
+                "editor.action.insertLineAfter"
+            ]
+        },
+        // Format document.
+        {
+            "before": [
+                "<leader>",
+                "="
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        // Use leader + u to open link below cursor.
+        {
+            "before": [
+                "<leader>",
+                "u"
+            ],
+            "commands": [
+                "editor.action.openLink"
+            ]
+        },
+        // Clear notifications.
+        {
+            "before": [
+                "<leader>",
+                "<backspace>"
+            ],
+            "commands": [
+                "notifications.clearAll"
+            ]
+        },
+        // Fast access to end of line.
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        // Fast access to begin of line.
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "^"
+            ]
+        },
+        // Redefinimos tab como el buscador de [, {, (. Es más sencillo que apretar %.
+        {
+            "before": [
+                "<tab>"
+            ],
+            "after": [
+                "%"
+            ]
+        },
+        // Redefinimos <leader>+a para seleccionar todo.
+        {
+            "before": [
+                "<leader>",
+                "a"
+            ],
+            //    "commands": ["editor.action.selectAll"]
+            "after": [
+                "g",
+                "g",
+                "V",
+                "G"
+            ]
+        },
+        // Indenta a la izquierda.
+        {
+            "before": [
+                "<leader>",
+                "["
+            ],
+            "after": [
+                "<",
+                "<"
+            ]
+        },
+        // Indenta a la derecha.
+        {
+            "before": [
+                "<leader>",
+                "]"
+            ],
+            "after": [
+                ">",
+                ">"
+            ]
+        },
+        // Abre el folding de la línea donde está el cursor.
+        {
+            "before": [
+                "z",
+                "M"
+            ],
+            "commands": [
+                "editor.foldAll"
+            ]
+        },
+        //    // Abre el folding de la línea donde está el cursor.
+        //    {
+        //        "before": ["<leader>", "f"],
+        //        "after": ["z","O"]
+        //    }, 
+        //    // Cierra el folding de la línea donde está el cursor.
+        //    {
+        //        "before": ["<leader>", "F"],
+        //        "commands": ["editor.foldRecursively"]
+        //    }, 
+        // Emula la tecla d pero usando el clipboard vacío.
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        // E
+        {
+            "before": [
+                "<leader>",
+                "D"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "D"
+            ]
+        },
+        // Emula la tecla x pero usando el clipboard vacío.
+        {
+            "before": [
+                "<leader>",
+                "x"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "x"
+            ]
+        },
+        // Emula la tecla X pero usando el clipboard vacío.
+        {
+            "before": [
+                "<leader>",
+                "X"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "X"
+            ]
+        },
+        // Emula la tecla c pero usando el clipboard vacío.
+        {
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "c"
+            ]
+        },
+        // Emula la tecla C pero usando el clipboard vacío.
+        {
+            "before": [
+                "<leader>",
+                "C"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "C"
+            ]
+        },
+        // Crea un cursor en la columna de abajo.
+        {
+            "before": [
+                "g",
+                "<down>"
+            ],
+            "commands": [
+                "editor.action.insertCursorBelow"
+            ]
+        },
+        // Crea un cursor en la columna de encima.
+        {
+            "before": [
+                "g",
+                "<up>"
+            ],
+            "commands": [
+                "editor.action.insertCursorAbove"
+            ]
+        },
+        // Crea cursores en todas las coincidencias de la palabra donde está el cursor.
+        {
+            "before": [
+                "g",
+                "l"
+            ],
+            "commands": [
+                "editor.action.selectHighlights"
+            ]
+        },
+        // Peek definition
+        {
+            "before": [
+                "g",
+                "D"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ]
+        },
+        // Show definition aside.
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinitionAside"
+            ]
+        },
+        // Quick fix.
+        {
+            "before": [
+                "g",
+                "f"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        // Rename symbol.
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        },
         // // Refactor.
         // {
         //     "before": ["<leader>", "R"],
@@ -213,315 +406,599 @@
         // }, 
         // Refactor.
         {
-            "before": ["<leader>", "R"],
+            "before": [
+                "<leader>",
+                "R"
+            ],
             "commands": [
                 {
                     "command": "editor.action.refactor",
-                    "args": {"kind": "python.refactorExtractMethod"}
+                    "args": {
+                        "kind": "python.refactorExtractMethod"
+                    }
                 }
             ]
-        }, 
-       // Show references.
-       {
-           "before": ["g", "r"],
-           "commands": ["references-view.find"]
-        }, 
+        },
+        // Show references.
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "references-view.find"
+            ]
+        },
         // Peek references.
         {
-            "before": ["g", "R"],
-            "commands": ["editor.action.referenceSearch.trigger"]
-        }, 
-       // Show all symbols.
-       {
-           "before": ["g", "s"],
-           "commands": ["workbench.action.gotoSymbol"]
-       }, 
-       // Go to symbol...
-       {
-           "before": ["g", "S"],
-           "commands": ["workbench.action.showAllSymbols"]
-       }, 
-       // Toggle minimap
-       {
-           "before": ["g", "m"],
-           "commands": ["editor.action.toggleMinimap"]
-       }, 
-       // Go to prev change
-       {
-           "before": ["g", "["],
-           "commands": ["workbench.action.compareEditor.previousChange"]
-       }, 
-       // Go to next change
-       {
-           "before": ["g", "]"],
-           "commands": ["workbench.action.compareEditor.nextChange"]
-       }, 
-
-       //------------------------------ 
-       // Editors manipulation.
-       //------------------------------ 
-
-       // Focus left editor group.
-       {
-           "before": ["<leader>", "h"],
-           "commands": ["workbench.action.focusLeftGroup"]
-       }, 
-       // Focus below editor group.
-       {
-           "before": ["<leader>", "j"],
-           "commands": ["workbench.action.focusBelowGroup"]
-       }, 
-       // Focus above editor group.
-       {
-           "before": ["<leader>", "k"],
-           "commands": ["workbench.action.focusAboveGroup"]
-       }, 
-       // Focus right editor group.
-       {
-           "before": ["<leader>", "l"],
-           "commands": ["workbench.action.focusRightGroup"]
-       }, 
-
-       // Move active editor into left group 
-       {
-           "before": ["<leader>", "H"],
-           "commands": ["workbench.action.moveEditorToLeftGroup"]
-       }, 
-       // Move active editor into below group 
-       {
-           "before": ["<leader>", "J"],
-           "commands": ["workbench.action.moveEditorToBelowGroup"]
-       }, 
-      // Move active editor into above group 
-      {
-          "before": ["<leader>", "K"],
-          "commands": ["workbench.action.moveEditorToAboveGroup"]
-      }, 
-      // Move active editor into right group 
-       {
-           "before": ["<leader>", "L"],
-           "commands": ["workbench.action.moveEditorToRightGroup"]
-        }, 
-
-       // Move active editor group left
+            "before": [
+                "g",
+                "R"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        // Show all symbols.
         {
-            "before": ["<leader>", "<left>"],
-            "commands": ["workbench.action.moveActiveEditorGroupLeft"]
-        }, 
-       // Move active editor group up
-       {
-           "before": ["<leader>", "<up>"],
-           "commands": ["workbench.action.moveActiveEditorGroupUp"]
-       }, 
-       // Move active editor group down
-       {
-           "before": ["<leader>", "<down>"],
-           "commands": ["workbench.action.moveActiveEditorGroupDown"]
-       }, 
-       // Move active editor group right
-       {
-           "before": ["<leader>", "<right>"],
-           "commands": ["workbench.action.moveActiveEditorGroupRight"]
-       }, 
-       
-       // Move editor left
-       {
-           "before": ["<leader>", "<"],
-           "commands": ["workbench.action.moveEditorLeftInGroup"]
-       }, 
-       // Move editor right
-       {
-           "before": ["<leader>", ">"],
-           "commands": ["workbench.action.moveEditorRightInGroup"]
-       }, 
-       
-       // Close editor
-       {
-           "before": ["<leader>", "q"],
-           "commands": ["workbench.action.closeActiveEditor"]
-       }, 
-
-       // Switch to left editor.
-       {
-           "before": ["<leader>", "m"],
-           "commands": ["workbench.action.previousEditorInGroup"]
-       }, 
-       // Switch last editor.
-       {
-           "before": ["<leader>", ","],
-           "commands": ["workbench.action.openNextRecentlyUsedEditorInGroup", "list.select"]
-       }, 
-       //    Switch to right editor.
-       {
-           "before": ["<leader>", "."],
-           "commands": ["workbench.action.nextEditorInGroup"]
-       }, 
-       // Show all editors.
-       {
-           "before": ["<leader>", "/"],
-           "commands": ["workbench.action.showAllEditors"]
-       }, 
-
-       // Open Editor at index 1
-       {
-           "before": ["<leader>", "1"],
-           "after": ["1", "g", "t"]
-       }, 
-       // Open Editor at index 2
-       {
-           "before": ["<leader>", "2"],
-           "after": ["2", "g", "t"]
-       }, 
-       // Open Editor at index 3
-       {
-           "before": ["<leader>", "3"],
-           "after": ["3", "g", "t"]
-       }, 
-       // Open Editor at index 4
-       {
-           "before": ["<leader>", "4"],
-           "after": ["4", "g", "t"]
-       }, 
-       // Open Editor at index 5
-       {
-           "before": ["<leader>", "5"],
-           "after": ["5", "g", "t"]
-       }, 
-       // Open Editor at index 6
-       {
-           "before": ["<leader>", "6"],
-           "after": ["6", "g", "t"]
-       }, 
-       // Open Editor at index 7
-       {
-           "before": ["<leader>", "7"],
-           "after": ["7", "g", "t"]
-       }, 
-       // Open Editor at index 8
-       {
-           "before": ["<leader>", "8"],
-           "after": ["8", "g", "t"]
-       }, 
-       // Open Editor at index 9
-       {
-           "before": ["<leader>", "9"],
-           "after": ["9", "g", "t"]
-       }, 
-       // Open last Editor.
-       {
-           "before": ["<leader>", "0"],
-           "commands": ["workbench.action.lastEditorInGroup"]
-       }, 
-
-       // ----------------------------------------------
-       // Now we set keymappings for easymotion extension.
-       // ----------------------------------------------
-       
-       // Use leader + spacebar to activate easymotion jump to line.
-       {
-           "before": ["<leader>","<space>"],
-           "after": ["<leader>", "<leader>", "<leader>", "b", "d", "j", "k"]
-       }, 
-       // Use space to activate easymotion forward word. 
-       {
-           "before": ["<space>"],
-           "after": ["<leader>", "<leader>", "<leader>", "j"]
-       }, 
-       // (Easymotion activation): Use also leader + s to activate
-       // easymotion plugin (default key combitation to activate is
-       // leader + leader).
-       {
-           "before": ["<leader>", "s"],
-           "after": ["<leader>", "<leader>"]
-       }, 
-
-       // ----------------------------------------------
-       // Now we set keymappings for bookmark extension.
-       // ----------------------------------------------
-
-       // Create bookmark 
-       {
-           "before": ["m", "m"],
-           "commands": ["bookmarks.toggle"],
-       }, 
-       // Go to next bookmark 
-       {
-           "before": ["m", "n"],
-           "commands": ["bookmarks.jumpToNext"],
-       }, 
-       // Go to previous bookmark
-       {
-           "before": ["m", "p"],
-           "commands": ["bookmarks.jumpToPrevious"],
-       }, 
-       // Annotate bookmark.
-       {
-           "before": ["m", "i"],
-           "commands": ["bookmarks.toggleLabeled"],
-       }, 
-       // Clear all bookmarks.
-       {
-           "before": ["m", "c"],
-           "commands": ["bookmarks.clear"],
-       }, 
-       // Show all bookmarks.
-       {
-           "before": ["m", "a"],
-           "commands": ["bookmarks.list"],
-       }, 
-       // Deletes all bookmarks from file.
-       {
-           "before": ["m", "x"],
-           "commands": ["bookmarks.clearFromFile"],
-       } 
+            "before": [
+                "g",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.gotoSymbol"
+            ]
+        },
+        // Go to symbol...
+        {
+            "before": [
+                "g",
+                "S"
+            ],
+            "commands": [
+                "workbench.action.showAllSymbols"
+            ]
+        },
+        // Toggle minimap
+        {
+            "before": [
+                "g",
+                "m"
+            ],
+            "commands": [
+                "editor.action.toggleMinimap"
+            ]
+        },
+        // Go to prev change
+        {
+            "before": [
+                "g",
+                "["
+            ],
+            "commands": [
+                "workbench.action.compareEditor.previousChange"
+            ]
+        },
+        // Go to next change
+        {
+            "before": [
+                "g",
+                "]"
+            ],
+            "commands": [
+                "workbench.action.compareEditor.nextChange"
+            ]
+        },
+        //------------------------------ 
+        // Editors manipulation.
+        //------------------------------ 
+        // Focus left editor group.
+        {
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.focusLeftGroup"
+            ]
+        },
+        // Focus below editor group.
+        {
+            "before": [
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                "workbench.action.focusBelowGroup"
+            ]
+        },
+        // Focus above editor group.
+        {
+            "before": [
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.focusAboveGroup"
+            ]
+        },
+        // Focus right editor group.
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.focusRightGroup"
+            ]
+        },
+        // Move active editor into left group 
+        {
+            "before": [
+                "<leader>",
+                "H"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToLeftGroup"
+            ]
+        },
+        // Move active editor into below group 
+        {
+            "before": [
+                "<leader>",
+                "J"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToBelowGroup"
+            ]
+        },
+        // Move active editor into above group 
+        {
+            "before": [
+                "<leader>",
+                "K"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToAboveGroup"
+            ]
+        },
+        // Move active editor into right group 
+        {
+            "before": [
+                "<leader>",
+                "L"
+            ],
+            "commands": [
+                "workbench.action.moveEditorToRightGroup"
+            ]
+        },
+        // Move active editor group left
+        {
+            "before": [
+                "<leader>",
+                "<left>"
+            ],
+            "commands": [
+                "workbench.action.moveActiveEditorGroupLeft"
+            ]
+        },
+        // Move active editor group up
+        {
+            "before": [
+                "<leader>",
+                "<up>"
+            ],
+            "commands": [
+                "workbench.action.moveActiveEditorGroupUp"
+            ]
+        },
+        // Move active editor group down
+        {
+            "before": [
+                "<leader>",
+                "<down>"
+            ],
+            "commands": [
+                "workbench.action.moveActiveEditorGroupDown"
+            ]
+        },
+        // Move active editor group right
+        {
+            "before": [
+                "<leader>",
+                "<right>"
+            ],
+            "commands": [
+                "workbench.action.moveActiveEditorGroupRight"
+            ]
+        },
+        // Move editor left
+        {
+            "before": [
+                "<leader>",
+                "<"
+            ],
+            "commands": [
+                "workbench.action.moveEditorLeftInGroup"
+            ]
+        },
+        // Move editor right
+        {
+            "before": [
+                "<leader>",
+                ">"
+            ],
+            "commands": [
+                "workbench.action.moveEditorRightInGroup"
+            ]
+        },
+        // Close editor
+        {
+            "before": [
+                "<leader>",
+                "q"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        // Switch to left editor.
+        {
+            "before": [
+                "<leader>",
+                "m"
+            ],
+            "commands": [
+                "workbench.action.previousEditorInGroup"
+            ]
+        },
+        // Switch last editor.
+        {
+            "before": [
+                "<leader>",
+                ","
+            ],
+            "commands": [
+                "workbench.action.openNextRecentlyUsedEditorInGroup",
+                "list.select"
+            ]
+        },
+        //    Switch to right editor.
+        {
+            "before": [
+                "<leader>",
+                "."
+            ],
+            "commands": [
+                "workbench.action.nextEditorInGroup"
+            ]
+        },
+        // Show all editors.
+        {
+            "before": [
+                "<leader>",
+                "/"
+            ],
+            "commands": [
+                "workbench.action.showAllEditors"
+            ]
+        },
+        // Open Editor at index 1
+        {
+            "before": [
+                "<leader>",
+                "1"
+            ],
+            "after": [
+                "1",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 2
+        {
+            "before": [
+                "<leader>",
+                "2"
+            ],
+            "after": [
+                "2",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 3
+        {
+            "before": [
+                "<leader>",
+                "3"
+            ],
+            "after": [
+                "3",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 4
+        {
+            "before": [
+                "<leader>",
+                "4"
+            ],
+            "after": [
+                "4",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 5
+        {
+            "before": [
+                "<leader>",
+                "5"
+            ],
+            "after": [
+                "5",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 6
+        {
+            "before": [
+                "<leader>",
+                "6"
+            ],
+            "after": [
+                "6",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 7
+        {
+            "before": [
+                "<leader>",
+                "7"
+            ],
+            "after": [
+                "7",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 8
+        {
+            "before": [
+                "<leader>",
+                "8"
+            ],
+            "after": [
+                "8",
+                "g",
+                "t"
+            ]
+        },
+        // Open Editor at index 9
+        {
+            "before": [
+                "<leader>",
+                "9"
+            ],
+            "after": [
+                "9",
+                "g",
+                "t"
+            ]
+        },
+        // Open last Editor.
+        {
+            "before": [
+                "<leader>",
+                "0"
+            ],
+            "commands": [
+                "workbench.action.lastEditorInGroup"
+            ]
+        },
+        // ----------------------------------------------
+        // Now we set keymappings for easymotion extension.
+        // ----------------------------------------------
+        // Use leader + spacebar to activate easymotion jump to line.
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "<leader>",
+                "b",
+                "d",
+                "j",
+                "k"
+            ]
+        },
+        // Use space to activate easymotion forward word. 
+        {
+            "before": [
+                "<space>"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "<leader>",
+                "j"
+            ]
+        },
+        // (Easymotion activation): Use also leader + s to activate
+        // easymotion plugin (default key combitation to activate is
+        // leader + leader).
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>"
+            ]
+        },
+        // ----------------------------------------------
+        // Now we set keymappings for bookmark extension.
+        // ----------------------------------------------
+        // Create bookmark 
+        {
+            "before": [
+                "m",
+                "m"
+            ],
+            "commands": [
+                "bookmarks.toggle"
+            ],
+        },
+        // Go to next bookmark 
+        {
+            "before": [
+                "m",
+                "n"
+            ],
+            "commands": [
+                "bookmarks.jumpToNext"
+            ],
+        },
+        // Go to previous bookmark
+        {
+            "before": [
+                "m",
+                "p"
+            ],
+            "commands": [
+                "bookmarks.jumpToPrevious"
+            ],
+        },
+        // Annotate bookmark.
+        {
+            "before": [
+                "m",
+                "i"
+            ],
+            "commands": [
+                "bookmarks.toggleLabeled"
+            ],
+        },
+        // Clear all bookmarks.
+        {
+            "before": [
+                "m",
+                "c"
+            ],
+            "commands": [
+                "bookmarks.clear"
+            ],
+        },
+        // Show all bookmarks.
+        {
+            "before": [
+                "m",
+                "a"
+            ],
+            "commands": [
+                "bookmarks.list"
+            ],
+        },
+        // Deletes all bookmarks from file.
+        {
+            "before": [
+                "m",
+                "x"
+            ],
+            "commands": [
+                "bookmarks.clearFromFile"
+            ],
+        }
     ],
-    "vim.normalModeKeyBindings": [
-    ],
+    "vim.normalModeKeyBindings": [],
     "vim.visualModeKeyBindingsNonRecursive": [
         // Redefinimos _ para subir la línea actual.
-       {
-           "before": ["_"],
-           "commands": ["editor.action.moveLinesUpAction"]
-       }, 
+        {
+            "before": [
+                "_"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
         // Redefinimos - para bajar la línea actual.
         {
-           "before": ["-"],
-           "commands": ["editor.action.moveLinesDownAction"]
-       }, 
+            "before": [
+                "-"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
         // Permite que en modo visual se pueda indentar/desindentar
         // con > y < repetidamente.
         {
-            "before": [">"],
-            "commands": ["editor.action.indentLines"]
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
         },
         {
-            "before": ["<"],
-            "commands": ["editor.action.outdentLines"]
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
         },
         // Crea cursores en todas las coincidencias de la selección.
         {
-            "before": ["g", "l"],
-            "commands": ["editor.action.selectHighlights"]
-        }, 
+            "before": [
+                "g",
+                "l"
+            ],
+            "commands": [
+                "editor.action.selectHighlights"
+            ]
+        },
         {
-            "before": ["<leader>", "R"],
+            "before": [
+                "<leader>",
+                "R"
+            ],
             "commands": [
                 {
                     "command": "editor.action.refactor",
-                    "args": {"kind": "python.refactorExtractMethod"}
+                    "args": {
+                        "kind": "python.refactorExtractMethod"
+                    }
                 }
             ]
-        } 
+        }
     ],
     "vim.insertModeKeyBindingsNonRecursive": [
         // In insert mode, use ctrl+l or ctrl+h to move right and left.
         {
-            "before": ["<C-l>"],
-            "after": ["<right>"]
+            "before": [
+                "<C-l>"
+            ],
+            "after": [
+                "<right>"
+            ]
         },
         {
-            "before": ["<C-h>"],
-            "after": ["<left>"]
+            "before": [
+                "<C-h>"
+            ],
+            "after": [
+                "<left>"
+            ]
         }
     ],
     "sync.gist": "0cba85799ab60d1531c40d3c7289da39",
@@ -546,16 +1023,18 @@
             "workbench.action.terminal.focus"
         ]
     },
+    "python.linting.flake8Args": [
+        "--max-line-length=88"
+    ],
     "vim.hlsearch": true,
     "editor.wordWrap": "wordWrapColumn",
-    "vim.textwidth": 76,
     "editor.minimap.enabled": true,
     "workbench.activityBar.visible": false,
     "[markdown]": {},
     "terminal.integrated.scrollback": 10000,
     "python.jediEnabled": false,
     "python.autoComplete.addBrackets": true,
-    "python.unitTest.pyTestEnabled": true,
+    "python.testing.pyTestEnabled": true,
     "autoDocstring.docstringFormat": "google",
     "python.formatting.provider": "black",
     "editor.suggestSelection": "first",
@@ -563,5 +1042,7 @@
     "editor.lineNumbers": "relative",
     "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]",
     "diffEditor.ignoreTrimWhitespace": true,
-    "diffEditor.renderSideBySide": true
+    "diffEditor.renderSideBySide": true,
+    "editor.accessibilitySupport": "off",
+    "python.linting.mypyEnabled": true
 }
