@@ -24,37 +24,37 @@ cecho "Installing homebrew packages..." $green
 
 # cli tools
 cli=(
-    coreutils
     ack
+    coreutils
     duti
     htop
-    tree
-    wget
+    imagemagick
+    mackup
     nmap
     openssl
-    trash
-    the_silver_searcher
-    imagemagick
     p7zip
-    mackup
+    the_silver_searcher
+    trash
+    tree
+    wget
 )
 brew install ${cli[@]}
 
 # development tools
 dev=(
     git
-    macvim
-    reattach-to-user-namespace
-    tmux
-    zsh
     highlight
-    z
+    macvim
     markdown
-    python
-    python3
     pyenv
     pyenv-virtualenv
+    python
+    python3
+    reattach-to-user-namespace
     ruby
+    tmux
+    z
+    zsh
 )
 brew install ${dev[@]}
 
@@ -70,10 +70,12 @@ brew install caskroom/cask/brew-cask
 # Casks.
 apps=(
     alfred
+    ammonite
     android-file-transfer
     android-studio
     appcleaner
     arduino
+    backuploupe
     balenaetcher
     bartender
     bettertouchtool
@@ -115,6 +117,7 @@ apps=(
     joplin
     # karabiner-elements    // Tienes instalada una versión de karabiner adhoc por el tema del capslock
     keepassxc
+    launchcontrol
     lightworks
     macvim
     namechanger
