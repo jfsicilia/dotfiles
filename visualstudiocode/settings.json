@@ -1,24 +1,158 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "terminal.integrated.fontFamily": "Droid Sans Mono for Powerline",
-    "python.linting.flake8Enabled": false,
+    //
+    // ####################### General settings. #######################
+    //
     "window.zoomLevel": 1,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.minimap.enabled": false,
+    "workbench.activityBar.visible": false,
+    "[markdown]": {},
     // Column rules at column 80 and 120.
     "editor.rulers": [
         80,
         120
     ],
-    "python.formatting.blackArgs": ["--line-length", "80"],
+    "editor.suggestSelection": "first",
+    // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.lineNumbers": "relative",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.renderSideBySide": true,
+    "editor.accessibilitySupport": "off",
+    // "kite.showWelcomeNotificationOnStartup": false,
     "workbench.colorTheme": "Solarized Dark",
     "editor.fontSize": 14,
+    "sync.gist": "0cba85799ab60d1531c40d3c7289da39",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.acceptSuggestionOnEnter": "off",
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.insertLineBelowNoCursorMove",
+            "sequence": [
+                "editor.action.insertLineAfter",
+                {
+                    "command": "type",
+                    "args": {
+                        "text": "k"
+                    }
+                }
+            ]
+        },
+        {
+            "command": "multiCommand.insertLineAboveNoCursorMove",
+            "sequence": [
+                "editor.action.insertLineBefore",
+                {
+                    "command": "type",
+                    "args": {
+                        "text": "j"
+                    }
+                }
+            ]
+        },
+        {
+            "command": "multiCommand.runPythonAndFocusTerminal",
+            "sequence": [
+                "python.execInTerminal",
+                "workbench.action.terminal.focus"
+            ]
+        },
+        {
+            "command": "multiCommand.focusEditorRunPythonAndFocusTerminal",
+            "sequence": [
+                "workbench.action.focusFirstEditorGroup",
+                "python.execInTerminal",
+                "workbench.action.terminal.focus"
+            ]
+        },
+        {
+            "command": "multiCommand.saveAndExitVimInsertMode",
+            "sequence": [
+                "editor.action.trimTrailingWhitespace",
+                "workbench.action.files.save",
+                "extension.vim_escape"
+            ]
+        }
+    ],
+    // "macros": {
+    //     "runPythonAndFocusTerminal": [
+    //         "python.execInTerminal",
+    //         "workbench.action.terminal.focus"
+    //     ],
+    //     "saveAndExitVimInsertMode": [
+    //         "editor.action.trimTrailingWhitespace",
+    //         "workbench.action.files.save",
+    //         "extension.vim_escape"
+    //     ],
+    //     "insertLineAboveNoCursorMove": [
+    //         "bookmarks.toggle",
+    //         "cursorUp",
+    //         "bookmarks.jumpToNext"
+    //         {"command": "type", "args": {"text": "mn"}}
+    //         // "editor.action.insertLineBefore",
+    //         // {"command": "type", "args": {"text": "j"}}
+    //     ]
+    // },
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": false,
+    "emmet.triggerExpansionOnTab": true,
+    //
+    // ####################### Terminal settings. #######################
+    //
+    "terminal.integrated.fontFamily": "Droid Sans Mono for Powerline",
+    "terminal.integrated.scrollback": 10000,
+    //
+    // ####################### Python settings. #######################
+    //
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "80"
+    ],
+    "python.autoComplete.addBrackets": true,
+    "python.linting.mypyArgs": [
+        // "--ignore-missing-imports",
+        // "--follow-imports=silent",
+        "--follow-imports=normal",
+        "--show-column-numbers",
+        "--check-untyped-defs"
+    ],
+    "python.testing.pyTestEnabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.formatOnPaste": false
+    },
+    "python.linting.flake8Args": [
+        "--max-line-length=188",
+        "--ignore=E203,W503"
+    ],
+    // () _a
+    // ####################### Vim settings. #######################
+    // []
+    "vim.hlsearch": true,
+    // "vim.debug.loggingLevelForConsole": "debug",
+    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]|\\(\\)|\\[\\]|\\{\\}|\\'\\'|\"\"|\\)|\\]|\\}",
     "vim.leader": ",",
     "vim.easymotion": true,
     "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf",
     "vim.easymotionMarkerFontSize": "18",
     "vim.easymotionMarkerHeight": 18,
     "vim.easymotionMarkerBackgroundColor": "green",
+    "vim.easymotionMarkerFontWeight": "bold",
+    "vim.easymotionMarkerWidthPerChar": 12,
+    "vim.useSystemClipboard": true,
+    "vim.sneak": true,
     // Keymappings for vim normal mode (non recursive).
     "vim.normalModeKeyBindingsNonRecursive": [
         // Toggles line wrapping.
@@ -120,24 +254,24 @@
                 "editor.action.moveLinesDownAction"
             ]
         },
-        // Creamos una linea vacía encima 
+        // Creamos una linea vacía encima
         {
             "before": [
                 "<leader>",
                 "O"
             ],
             "commands": [
-                "editor.action.insertLineBefore"
+                "multiCommand.insertLineAboveNoCursorMove"
             ]
         },
-        // Creamos una linea vacía debajo 
+        // Creamos una linea vacía debajo
         {
             "before": [
                 "<leader>",
                 "o"
             ],
             "commands": [
-                "editor.action.insertLineAfter"
+                "multiCommand.insertLineBelowNoCursorMove"
             ]
         },
         // Format document.
@@ -233,7 +367,7 @@
                 ">"
             ]
         },
-        // Abre el folding de la línea donde está el cursor.
+        // Cierra todos los folds del archivo.
         {
             "before": [
                 "z",
@@ -243,16 +377,101 @@
                 "editor.foldAll"
             ]
         },
-        //    // Abre el folding de la línea donde está el cursor.
-        //    {
-        //        "before": ["<leader>", "f"],
-        //        "after": ["z","O"]
-        //    }, 
-        //    // Cierra el folding de la línea donde está el cursor.
-        //    {
-        //        "before": ["<leader>", "F"],
-        //        "commands": ["editor.foldRecursively"]
-        //    }, 
+        // En python vamos a la anterior función (def)
+        {
+            "before": [
+                "<C-k>"
+            ],
+            "after": [
+                "?",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>",
+                ":",
+                "n",
+                "o",
+                "h",
+                "<CR>"
+            ]
+        },
+        // En python vamos a la siguiente función (def)
+        {
+            "before": [
+                "<C-j>"
+            ],
+            "after": [
+                "/",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>",
+                ":",
+                "n",
+                "o",
+                "h",
+                "<CR>"
+            ]
+        },
+        // Cierra el fold recursivamente y nos situa en la primera linea del fold.
+        {
+            "before": [
+                "z",
+                "C"
+            ],
+            "after": [
+                "$",
+                "?",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>",
+                "z",
+                "c",
+                ":",
+                "n",
+                "o",
+                "h",
+                "<CR>"
+            ]
+        },
+        // Abre el folding de la línea donde está el cursor recursivamente.
+        {
+            "before": [
+                "<leader>",
+                "F"
+            ],
+            "after": [
+                "z",
+                "O"
+            ]
+        },
+        // Cierra el fold recursivamente y nos situa en la primera linea del fold.
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "after": [
+                "$",
+                "?",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>",
+                "z",
+                "c",
+                ":",
+                "n",
+                "o",
+                "h",
+                "<CR>"
+            ]
+        },
         // Emula la tecla d pero usando el clipboard vacío.
         {
             "before": [
@@ -265,7 +484,7 @@
                 "d"
             ]
         },
-        // E
+        // Emula la tecla D pero usando el clipboard vacío.
         {
             "before": [
                 "<leader>",
@@ -396,14 +615,6 @@
                 "editor.action.rename"
             ]
         },
-        // // Refactor.
-        // {
-        //     "before": ["<leader>", "R"],
-        //     "command": "editor.action.refactor",
-        //     "args": {
-        //         "kind": "refactor"
-        //     }
-        // }, 
         // Refactor.
         {
             "before": [
@@ -489,9 +700,9 @@
                 "workbench.action.compareEditor.nextChange"
             ]
         },
-        //------------------------------ 
+        //------------------------------
         // Editors manipulation.
-        //------------------------------ 
+        //------------------------------
         // Focus left editor group.
         {
             "before": [
@@ -532,7 +743,7 @@
                 "workbench.action.focusRightGroup"
             ]
         },
-        // Move active editor into left group 
+        // Move active editor into left group
         {
             "before": [
                 "<leader>",
@@ -542,7 +753,7 @@
                 "workbench.action.moveEditorToLeftGroup"
             ]
         },
-        // Move active editor into below group 
+        // Move active editor into below group
         {
             "before": [
                 "<leader>",
@@ -552,7 +763,7 @@
                 "workbench.action.moveEditorToBelowGroup"
             ]
         },
-        // Move active editor into above group 
+        // Move active editor into above group
         {
             "before": [
                 "<leader>",
@@ -562,7 +773,7 @@
                 "workbench.action.moveEditorToAboveGroup"
             ]
         },
-        // Move active editor into right group 
+        // Move active editor into right group
         {
             "before": [
                 "<leader>",
@@ -820,7 +1031,7 @@
                 "k"
             ]
         },
-        // Use space to activate easymotion forward word. 
+        // Use space to activate easymotion forward word.
         {
             "before": [
                 "<space>"
@@ -848,7 +1059,7 @@
         // ----------------------------------------------
         // Now we set keymappings for bookmark extension.
         // ----------------------------------------------
-        // Create bookmark 
+        // Create bookmark
         {
             "before": [
                 "m",
@@ -858,7 +1069,7 @@
                 "bookmarks.toggle"
             ],
         },
-        // Go to next bookmark 
+        // Go to next bookmark
         {
             "before": [
                 "m",
@@ -919,7 +1130,6 @@
             ],
         }
     ],
-    "vim.normalModeKeyBindings": [],
     "vim.visualModeKeyBindingsNonRecursive": [
         // Redefinimos _ para subir la línea actual.
         {
@@ -967,6 +1177,7 @@
                 "editor.action.selectHighlights"
             ]
         },
+        // Refactor.
         {
             "before": [
                 "<leader>",
@@ -980,69 +1191,41 @@
                     }
                 }
             ]
-        }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
-        // In insert mode, use ctrl+l or ctrl+h to move right and left.
+        },
+        // En python vamos a la anterior función (def)
         {
             "before": [
-                "<C-l>"
+                "<C-k>"
             ],
             "after": [
-                "<right>"
+                "?",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>"
             ]
         },
+        // En python vamos a la siguiente función (def)
         {
             "before": [
-                "<C-h>"
+                "<C-j>"
             ],
             "after": [
-                "<left>"
+                "/",
+                "d",
+                "e",
+                "f",
+                " ",
+                "<CR>"
             ]
         }
     ],
-    "sync.gist": "0cba85799ab60d1531c40d3c7289da39",
-    "vim.easymotionMarkerFontWeight": "bold",
-    "vim.easymotionMarkerWidthPerChar": 12,
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#005f5f",
-        "statusBar.noFolderBackground": "#005f5f",
-        "statusBar.debuggingBackground": "#005f5f"
-    },
-    "vim.useSystemClipboard": true,
-    "vim.sneak": true,
-    "editor.renderWhitespace": "none",
-    "breadcrumbs.enabled": false,
-    "emmet.triggerExpansionOnTab": true,
-    "[python]": {
-        "editor.formatOnPaste": false
-    },
-    "macros": {
-        "runPythonAndFocusTerminal": [
-            "python.execInTerminal",
-            "workbench.action.terminal.focus"
-        ]
-    },
-    "python.linting.flake8Args": [
-        "--max-line-length=88"
-    ],
-    "vim.hlsearch": true,
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.minimap.enabled": true,
-    "workbench.activityBar.visible": false,
-    "[markdown]": {},
-    "terminal.integrated.scrollback": 10000,
-    "python.jediEnabled": false,
-    "python.autoComplete.addBrackets": true,
-    "python.testing.pyTestEnabled": true,
-    "autoDocstring.docstringFormat": "google",
-    "python.formatting.provider": "black",
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "editor.lineNumbers": "relative",
-    "vim.easymotionJumpToAnywhereRegex": "\\b[A-Za-z0-9]|_.|#.|[a-z][A-Z]|\\(\\)|\\[\\]|\\{\\}|\\'\\'|\"\"",
-    "diffEditor.ignoreTrimWhitespace": true,
-    "diffEditor.renderSideBySide": true,
-    "editor.accessibilitySupport": "off",
-    "python.linting.mypyEnabled": true
+    "vim.normalModeKeyBindings": [],
+    "vim.insertModeKeyBindingsNonRecursive": [],
+    "explorer.confirmDragAndDrop": false,
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.integrated.rendererType": "dom",
+    "python.linting.flake8Enabled": true,
+    "editor.formatOnSave": true
 }

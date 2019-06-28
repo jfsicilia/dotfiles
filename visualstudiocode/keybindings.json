@@ -1,12 +1,13 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
+    // Show git repositories.
     {
-        "key": "ctrl+shift+l",
+        "key": "shift+cmd+l",
         "command": "gitlens.showRepositoriesView",
     },
     // Fast access to bookmarks panel.
     {
-        "key": "ctrl+shift+b",
+        "key": "shift+cmd+b",
         "command": "workbench.view.extension.bookmarks"
     },
     // Access Go to File... 'vim style'.
@@ -15,14 +16,108 @@
         "command": "workbench.action.quickOpen"
     },
     // Save file 'vim style'.
-    { 
-        "key": "ctrl+s",                 
-        "command": "workbench.action.files.save" 
+    {
+        "key": "cmd+s",
+        "command": "multiCommand.saveAndExitVimInsertMode"
     },
-    
-    // -------------------------   
+    // Save file 'vim style'.
+    {
+        "key": "ctrl+s",
+        "command": "multiCommand.saveAndExitVimInsertMode"
+    },
+    // Moves cursor one line up and scroll window one line (the cursor stays at
+    // the same distance to the top/bottom of window).
+    {
+        "key": "ctrl+shift+y",
+        "command": "onelinescroll.scrollUp"
+    },
+    // Moves cursor one line down and scroll window one line (the cursor stays
+    // at the same distance to the top/bottom of window).
+    {
+        "key": "ctrl+shift+e",
+        "command": "onelinescroll.scrollDown"
+    },
+    // Moves cursor one position to the right (same as right arrow).
+    {
+        "key": "ctrl+l",
+        "command": "editor.action.moveCarretRightAction",
+        "when": "editorTextFocus"
+    },
+    // Moves cursor one position to the left (same as left arrow).
+    {
+        "key": "ctrl+h",
+        "command": "editor.action.moveCarretLeftAction",
+        "when": "editorTextFocus"
+    },
+    // Removes all notifications.
+    {
+        "key": "cmd+backspace",
+        "command": "notifications.clearAll",
+        "when": "(textInputFocus && !editorReadonly) || terminalFocus"
+    },
+    // Runs python file.
+    {
+        "key": "f5",
+        "command": "multiCommand.runPythonAndFocusTerminal",
+        "when": "!inDebugMode && editorTextFocus"
+    },
+    // Runs python file.
+    {
+        "key": "f5",
+        "command": "multiCommand.focusEditorRunPythonAndFocusTerminal",
+        "when": "!inDebugMode && terminalFocus"
+    },
+    // Starts debug mode.
+    {
+        "key": "ctrl+f5",
+        "command": "workbench.action.debug.start",
+        "when": "!inDebugMode"
+    },
+    // Start without debugger.
+    {
+        "key": "alt+f5",
+        "command": "workbench.action.debug.run",
+        "when": "!inDebugMode"
+    },
+    // Removes previous bound command.
+    {
+        "key": "f5",
+        "command": "-workbench.action.debug.start",
+        "when": "!inDebugMode"
+    },
+    // Removes previous bound command.
+    {
+        "key": "ctrl+f5",
+        "command": "-workbench.action.debug.run",
+        "when": "!inDebugMode"
+    },
+    // Removes previous bound command.
+    {
+        "key": "alt+f5",
+        "command": "-workbench.action.editor.nextChange",
+        "when": "editorTextFocus"
+    },
+    // Removes previous bound command.
+    {
+        "key": "alt+f5",
+        "command": "-workbench.action.compareEditor.nextChange",
+        "when": "textCompareEditorVisible"
+    },
+    // Removes previous bound command.
+    {
+        "key": "shift+alt+f5",
+        "command": "-workbench.action.editor.previousChange",
+        "when": "editorTextFocus"
+    },
+    // Removes previous bound command.
+    {
+        "key": "shift+alt+f5",
+        "command": "-workbench.action.compareEditor.previousChange",
+        "when": "textCompareEditorVisible"
+    },
+    // -------------------------
     // New terminal keybindings.
-    // -------------------------   
+    // -------------------------
     {
         "key": "cmd+down",
         "command": "workbench.action.terminal.scrollDown",
@@ -94,33 +189,44 @@
         "when": "terminalFocus"
     },
     {
-        "key": "cmd+backspace",
-        "command": "notifications.clearAll",
-        "when": "textInputFocus && !editorReadonly"
+        "key": "ctrl+shift+b",
+        "command": "workbench.action.tasks.build"
     },
     {
-        "key": "alt+F5",
-        "command": "macros.runPythonAndFocusTerminal",
-        "when": "editorTextFocus"
+        "key": "shift+cmd+b",
+        "command": "-workbench.action.tasks.build"
     },
     {
-        "key": "alt+f5",
-        "command": "-workbench.action.editor.nextChange",
-        "when": "editorTextFocus"
+        "key": "ctrl+shift+l",
+        "command": "editor.action.selectHighlights",
+        "when": "editorFocus"
     },
     {
-        "key": "shift+alt+f5",
-        "command": "-workbench.action.editor.previousChange",
-        "when": "editorTextFocus"
+        "key": "shift+cmd+l",
+        "command": "-editor.action.selectHighlights",
+        "when": "editorFocus"
     },
     {
-        "key": "alt+f5",
-        "command": "-workbench.action.compareEditor.nextChange",
-        "when": "textCompareEditorVisible"
+        "key": "alt+cmd+up",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
     },
     {
-        "key": "shift+alt+f5",
-        "command": "-workbench.action.compareEditor.previousChange",
-        "when": "textCompareEditorVisible"
+        "key": "alt+cmd+down",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "shift+cmd+j",
+        "command": "-workbench.action.search.toggleQueryDetails",
+        "when": "searchViewletVisible"
+    },
+    {
+        "key": "shift+cmd+j",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal"
     }
 ]
