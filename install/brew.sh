@@ -102,6 +102,7 @@ apps=(
     find-any-file
     firefox
     flixtools
+    fluid
     freecad
     freefilesync
     freemind
